@@ -78,6 +78,8 @@ class Server(models.Model):
 
 
     hostname = models.CharField(max_length=128, primary_key=True)
+    cname = models.CharField(max_length=128, blank=True, null=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
     appid = models.ForeignKey('appid', on_delete=models.CASCADE)
     environment = models.CharField(max_length=50, choices=environment_choices, null=True, blank=True)
     detected = models.DateField(null=True, blank=True)
