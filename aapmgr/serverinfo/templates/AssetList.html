@@ -1,0 +1,51 @@
+<!-- cv/templates/cv/selinux_list.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Server Configuration{% endblock %}
+
+{% block content %}
+    <h2>Server Configuration</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Application ID</th>
+                <th>Application Name</th>
+                <th>Hostname</th>
+                <th>Computer Name</th>
+                <th>Environment</th>
+                <th>Patch window</th>
+                <th>Datacenter</th>
+                <th>Vmware Datacenter/th>
+                <th>Function</th>
+                <th>Technical contacts</th>
+                <th>Country</th>
+                <th>Support Hours</th>
+                <th>Guard</th>
+                <th>deploy date</th>
+                <th>asset status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for asset in assets %}
+                <tr>
+                    <td><img src="{{ entry.healthball }}"></td>
+                    <td>{{ asset.host_name }}</td>
+                    <td>{{ asset.asset_status }}</td>
+                    <td bgcolor="{{ entry.detectedcolor }}">{{ entry.detected }}</td>
+                    <td>{{ entry.mount }}</td>
+                    <td>{{ entry.rootdir }}</td>
+                    <td>{{ entry.policyname }}</td>
+                    <td>{{ entry.current_mode }}</td>
+                    <td>{{ entry.configured_mode }}</td>
+                    <td>{{ entry.mslstatus }}</td>
+                    <td>{{ entry.memprotect }}</td>
+                    <td>{{ entry.maxkernel }}</td>
+                    <td>{{ entry.total }}</td>
+                    <td>{{ entry.success }}</td>
+                    <td>{{ entry.failed }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

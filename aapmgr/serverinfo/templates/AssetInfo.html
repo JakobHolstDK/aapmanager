@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Server Information</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/serverinfo.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>Server Information</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Server Information</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Server Name</td>
+                        <td>{{ server_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Server IP</td>
+                        <td>{{ server_ip }}</td>
+                    </tr>
+                    <tr>
+                        <td>Server OS</td>
+                        <td>{{ server_os }}</td>
+                    </tr>
+                    <tr>
+                        <td>Server Uptime</td>
+                        <td>{{ server_uptime }}</td>
+                    </tr>
+                    <tr>
+                        <td>Server Load</td>
+                        <td>{{ server_load }}</td>
+                    </tr>
+                    <tr>
+                        <td>Server Memory</td>
+                        <td>{{ server_memory }}</td>
+                    </tr>
+                    <tr>
+                        <td>Server Disk</td>
+                        <td>{{ server_disk }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h2>Server Services</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Apache</td>
+                        <td>{{ apache_status }}</td>
+                    </tr>
+                    <tr>
+                        <td>MySQL</td>
+                        <td>{{ mysql_status }}</td>
+                    </tr>
+                    <tr>
+                        <td>Postfix</td>
+                        <td>{{ postfix_status }}</td>
+                    </tr>
+                    <tr>
+                        <td>SSH</td>
+                        <td>{{ ssh_status }}</td>
+                    </tr>
+                    <tr>
+                        <td>FTP</td>
+                        <td>{{ ftp_status }}</td>
+                    </tr>
+                    <tr>
+                        <td>Firewall</td>
+                        <td>{{ firewall_status }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+  {% extends 'base.html' %}
+
+  {% block title %}Server Configuration{% endblock %}
+
+  {% block content %}
+
+      <h2>Patch management</h2>
+      <table>
+          <thead>
+              <tr>
+                  <th>Application ID</th>
+                  <th>Environment</th>
+                  <th>OS</th>
+                  <th>Version</th>
+                  <th>Hostname</th>
+                  <th>Last patched</th>
+                  <th>Last rebooted</th>
+                  <th>Autopatch</th>
+                  <th>Patch window</th>
+                  <th>Jan</th>
+                  <th>Feb</th>
+                  <th>Mar</th>
+                  <th>Apr</th>
+                  <th>May</th>
+                  <th>Jun</th>
+                  <th>Jul</th>
+                  <th>Aug</th>
+                  <th>Sep</th>
+                  <th>Oct</th>
+                  <th>Nov</th>
+                  <th>Dec</th>
+
+              </tr>
+          </thead>
+          <tbody>
+              {% for server in servers %}
+                  <tr>
+                      <td>{{ server.appid }}</td>
+                      <td>{{ server.environment }}</td>
+                      <td>{{ server.os }}</td>
+                      <td>{{ server.os_version }}</td>
+                      <td>{{ server.hostname }}</td>
+                      <td>{{ server.lastpatch }}</td>
+                      <td>{{ server.lastboot }}</td>
+
+                      {% if server.aap_autopatch %}
+                      <td>Enabled</td>
+                      <td>{{ server.aap_patch_env }} Batch {{ server.aap_patch_batch }}-{{ server.aap_patch_patchtime}}</td>
+                      <td><a href="{{ server.aap_patch_window_scheduled_url_jan }}" target="_blank">{{ server.aap_patch_window_scheduled_jan }}</a></td>
+                      <td><a href="{{ server.aap_patch_window_scheduled_url_feb }}" target="_blank">{{ server.aap_patch_window_scheduled_feb }}</a></td>
+                      <td><a href="{{ server.aap_patch_window_scheduled_url_mar }}" target="_blank">{{ server.aap_patch_window_scheduled_mar }}</a></td>
+                      <td><a href="{{ server.aap_patch_window_scheduled_url_apr }}" target="_blank">{{ server.aap_patch_window_scheduled_apr }}</a></td>
+                      <td><a href="{{ server.aap_patch_window_scheduled_url_may }}" target="_blank">{{ server.aap_patch_window_scheduled_may }}</a></td>
+                      <td><a href="{{ server.aap_patch_window_scheduled_url_jun }}" target="_blank">{{ server.aap_patch_window_scheduled_jun }}</a></td>
+                      <td><a href="{{ server.aap_patch_window_scheduled_url_jul }}" target="_blank">{{ server.aap_patch_window_scheduled_jul }}</a></td>
+                      <td><a href="{{ server.aap_patch_window_scheduled_url_aug }}" target="_blank">{{ server.aap_patch_window_scheduled_aug }}</a></td>
+                      <td><a href="{{ server.aap_patch_window_scheduled_url_sep }}" target="_blank">{{ server.aap_patch_window_scheduled_sep }}</a></td>
+                      <td><a href="{{ server.aap_patch_window_scheduled_url_oct }}" target="_blank">{{ server.aap_patch_window_scheduled_oct }}</a></td>
+                      <td><a href="{{ server.aap_patch_window_scheduled_url_nov }}" target="_blank">{{ server.aap_patch_window_scheduled_nov }}</a></td>
+                      <td><a href="{{ server.aap_patch_window_scheduled_url_dec }}" target="_blank">{{ server.aap_patch_window_scheduled_dec }}</a></td>
+                      {% else %}
+                      <td>Not enabled</td>
+                      {% endif %}
+                  </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+  {% endblock %}
