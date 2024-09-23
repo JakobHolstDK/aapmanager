@@ -3,7 +3,13 @@ class Server(models.Model):
     environment_choices = [
         ('TEST / DEV', 'Test and Development'),
         ('QA / PREPROD', 'Quality Assurance and Pre-Production'),
-        ('PROD', 'Production')
+        ('PROD', 'Production'),
+        ('DR', 'Disaster Recovery'),
+        ('Test', 'Test'),
+        ('Development', 'Development'),
+        ('Production', 'Production'),
+        ('unknown', 'Unknown')
+
     ]
     os_choices = [
         ('RHEL', 'Red Hat Enterprise Linux'),
@@ -15,12 +21,14 @@ class Server(models.Model):
         ('SLES', 'SUSE Linux Enterprise Server'),
         ('Windows', 'Windows Server'),
         ('AIX', 'AIX'),
-        ('IBM i', 'IBM i')
+        ('IBM i', 'IBM i'),
+        ('unknown', 'Unknown')
     ]
     os_arch_choices = [
-        ('x86_64', '64-bit'),
-        ('i386', '32-bit'),
+        ('x86_64', 'Intel 64-bit'),
+        ('i386', 'Intel 32-bit'),
         ('ppc64', 'PowerPC 64-bit'),
+        ('unknown', 'Unknown')
     ]
 
     healthball_choices = [
@@ -75,6 +83,15 @@ class Server(models.Model):
         ('eol-extended', 'End of Life Extended Support'),
         ('eol-unsupported', 'End of Life Unsupported')
     ]
+    aap_autopatch_status_choices = [
+        ('confirmed', 'Confirmed'),
+        ('pending', 'Pending'),
+        ('cancelled', 'Cancelled'),
+        ('unknown', 'Unknown'),
+        ('error', 'Error')
+    ]
+
+
 
 
     hostname = models.CharField(max_length=128, primary_key=True)
@@ -97,6 +114,21 @@ class Server(models.Model):
     os_eol = models.DateField(null=True, blank=True)
     os_eol_state = models.CharField(max_length=50, choices=os_eol_state_choices, blank=True, null=True)
     aap_autopatch = models.BooleanField(default=False)
+    aap_autopatch_status = models.CharField(max_length=50, choices=aap_autopatch_status_choices, blank=True, null=True, default='unknown')
+    aap_autopatch_lastcheck = models.DateTimeField(null=True, blank=True)
+    aap_patchwindow_override = models.BooleanField(default=False)
+    aap_manual_patchwindow_jan = models.DateField(blank=True, null=True)
+    aap_manual_patchwindow_feb = models.DateField(blank=True, null=True)    
+    aap_manual_patchwindow_mar = models.DateField(blank=True, null=True)
+    aap_manual_patchwindow_apr = models.DateField(blank=True, null=True)
+    aap_manual_patchwindow_may = models.DateField(blank=True, null=True)
+    aap_manual_patchwindow_jun = models.DateField(blank=True, null=True)
+    aap_manual_patchwindow_jul = models.DateField(blank=True, null=True)
+    aap_manual_patchwindow_aug = models.DateField(blank=True, null=True)
+    aap_manual_patchwindow_sep = models.DateField(blank=True, null=True)
+    aap_manual_patchwindow_oct = models.DateField(blank=True, null=True)
+    aap_manual_patchwindow_nov = models.DateField(blank=True, null=True)
+    aap_manual_patchwindow_dec = models.DateField(blank=True, null=True)
     aap_lastpatch = models.CharField(max_length=50, blank=True, null=True)
     aap_nextpatch = models.CharField(max_length=50, blank=True, null=True)
     aap_scheduled_patching = models.JSONField(blank=True, null=True)
