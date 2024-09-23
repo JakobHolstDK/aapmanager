@@ -4,32 +4,12 @@ import json
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Asset, Server, appid
-from .serializers import AssetSerializer, ServerSerializer, AppidSerializer
+from .models import Asset, Server
+from .serializers import AssetSerializer, ServerSerializer
 from django.shortcuts import render
 from django.views.generic import ListView
 
-# we need an API for the assets and servers
-# we will use the ModelViewSet class from the rest_framework.viewsets module to create the API
-
-# The ModelViewSet class provides the following actions:
-# list: Returns a list of all the objects in the queryset
-# create: Creates a new object
-# retrieve: Returns a single object
-# update: Updates an object
-# destroy: Deletes an object
-
-# The ModelViewSet class also provides the following methods:
-# perform_create: Called when creating an object
-# perform_update: Called when updating an object
-
-# The ModelViewSet class also provides the following attributes:
-# queryset: The queryset to use
-# serializer_class: The serializer class to use
-
-
-
-class ServerViewSet(viewsets.ModelViewSet):
+class SererViewSet(viewsets.ModelViewSet):
     queryset = Server.objects.all()
     serializer_class = ServerSerializer
 
@@ -53,71 +33,10 @@ class ServerViewSet(viewsets.ModelViewSet):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = ServerSerializer(queryset, many=True)
         return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs): 
-        instance = self.get_object()
-        serializer = ServerSerializer(instance)
-        return Response(serializer.data)
-    
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = ServerSerializer(instance, data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_update(serializer)
-        return Response(serializer.data)
-    
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    
-    
     
    
 
-class AppidViewSet(viewsets.ModelViewSet):
-    queryset = appid.objects.all()
-    serializer_class = AppidSerializer
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data, many=isinstance(request.data, list))
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-    
-    def perform_create(self, serializer):
-        serializer.save()
-
-    def perform_update(self, serializer):
-        serializer.save()
-
-    def perform_destroy(self, instance):
-        instance.delete()
-
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = ServerSerializer(queryset, many=True)
-        return Response(serializer.data)
-      
-    def retrieve(self, request, *args, **kwargs): 
-          instance = self.get_object()
-          serializer = ServerSerializer(instance)
-          return Response(serializer.data)
-      
-    def update(self, request, *args, **kwargs):
-          instance = self.get_object()
-          serializer = ServerSerializer(instance, data=request.data)
-          serializer.is_valid(raise_exception=True)
-          self.perform_update(serializer)
-          return Response(serializer.data)
-      
-    def destroy(self, request, *args, **kwargs):
-          instance = self.get_object()
-          self.perform_destroy(instance)
-          return Response(status=status.HTTP_204_NO_CONTENT)
-    
-    
 
 class AssetViewSet(viewsets.ModelViewSet):
     queryset = Asset.objects.all()
