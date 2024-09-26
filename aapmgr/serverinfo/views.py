@@ -9,7 +9,7 @@ from .serializers import AssetSerializer, ServerSerializer
 from django.shortcuts import render
 from django.views.generic import ListView
 
-class SererViewSet(viewsets.ModelViewSet):
+class ServerViewSet(viewsets.ModelViewSet):
     queryset = Server.objects.all()
     serializer_class = ServerSerializer
 
@@ -71,6 +71,10 @@ def asset_list(request):
 def server_list(request):
     servers = Server.objects.all()
     return render(request, 'ServerList.html', {'servers': servers})
+
+def server_info(request, pk):
+    server = Server.objects.get(pk=pk)
+    return render(request, 'ServerInfo.html', {'server': server})
 
 
 

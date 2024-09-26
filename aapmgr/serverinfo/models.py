@@ -3,7 +3,9 @@ class Server(models.Model):
     environment_choices = [
         ('TEST / DEV', 'Test and Development'),
         ('QA / PREPROD', 'Quality Assurance and Pre-Production'),
-        ('PROD', 'Production')
+        ('PROD', 'Production'),
+        ('unknown', 'Unknown')
+
     ]
     os_choices = [
         ('RHEL', 'Red Hat Enterprise Linux'),
@@ -15,12 +17,14 @@ class Server(models.Model):
         ('SLES', 'SUSE Linux Enterprise Server'),
         ('Windows', 'Windows Server'),
         ('AIX', 'AIX'),
-        ('IBM i', 'IBM i')
+        ('IBM i', 'IBM i'),
+        ('unknown', 'Unknown')
     ]
     os_arch_choices = [
         ('x86_64', '64-bit'),
         ('i386', '32-bit'),
         ('ppc64', 'PowerPC 64-bit'),
+        ('unknown', 'Unknown')
     ]
 
     healthball_choices = [
@@ -97,6 +101,20 @@ class Server(models.Model):
     os_eol = models.DateField(null=True, blank=True)
     os_eol_state = models.CharField(max_length=50, choices=os_eol_state_choices, blank=True, null=True)
     aap_autopatch = models.BooleanField(default=False)
+    aap_patchwindow_override = models.BooleanField(default=False)
+    aap_patchwindow_override_jan = models.DateTimeField(null=True, blank=True)
+    aap_patchwindow_override_feb = models.DateTimeField(null=True, blank=True)
+    aap_patchwindow_override_mar = models.DateTimeField(null=True, blank=True)
+    aap_patchwindow_override_apr = models.DateTimeField(null=True, blank=True)
+    aap_patchwindow_override_may = models.DateTimeField(null=True, blank=True)
+    aap_patchwindow_override_jun = models.DateTimeField(null=True, blank=True)
+    aap_patchwindow_override_jul = models.DateTimeField(null=True, blank=True)
+    aap_patchwindow_override_aug = models.DateTimeField(null=True, blank=True)
+    aap_patchwindow_override_sep = models.DateTimeField(null=True, blank=True)
+    aap_patchwindow_override_oct = models.DateTimeField(null=True, blank=True)
+    aap_patchwindow_override_nov = models.DateTimeField(null=True, blank=True)
+    aap_patchwindow_override_dec = models.DateTimeField(null=True, blank=True)
+
     aap_lastpatch = models.CharField(max_length=50, blank=True, null=True)
     aap_nextpatch = models.CharField(max_length=50, blank=True, null=True)
     aap_scheduled_patching = models.JSONField(blank=True, null=True)

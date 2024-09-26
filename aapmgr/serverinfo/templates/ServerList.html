@@ -17,6 +17,7 @@
                   <th>Description</th>
                   <th>Last patched</th>
                   <th>Last rebooted</th>
+                  <th>Patch window override</th>
                   <th>Autopatch</th>
                   <th>Patch window</th>
                   <th>Jan</th>
@@ -46,6 +47,12 @@
                       <td>{{ server.description }}</td>
                       <td>{{ server.lastpatch }}</td>
                       <td>{{ server.lastboot }}</td>
+
+                      {% if server.aap_patchwindow_override %}
+                      <td>Enabled</td>
+                      {% else %}
+                      <td>-</td>
+                      {% endif %}
 
                       {% if server.aap_autopatch %}
                       <td>Enabled</td>

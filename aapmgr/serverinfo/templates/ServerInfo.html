@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}Server Settings{% endblock %}
+
+{% block content %}
+
+    <h2>Server Configuration</h2>
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Application ID:</td>
+                <td><input type="text" name="appid" value="{{ server.appid }}"></td>
+            </tr>
+            <tr>
+                <td>Environment:</td>
+                <td><input type="text" name="environment" value="{{ server.environment }}"></td>
+            </tr>
+            <tr>
+                <td>OS:</td>
+                <td><input type="text" name="os" value="{{ server.os }}"></td>
+            </tr>
+            <tr>
+                <td>Version:</td>
+                <td><input type="text" name="os_version" value="{{ server.os_version }}"></td>
+            </tr>
+            <tr>
+                <td>Hostname:</td>
+                <td><input type="text" name="hostname" value="{{ server.hostname }}"></td>
+            </tr>
+            <tr>
+                <td>C-name:</td>
+                <td><input type="text" name="cname" value="{{ server.cname }}"></td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td><input type="text" name="description" value="{{ server.description }}"></td>
+            </tr>
+            <tr>
+                <td>Last patched:</td>
+                <td><input type="text" name="lastpatch" value="{{ server.lastpatch }}"></td>
+            </tr>
+            <tr>
+                <td>Last rebooted:</td>
+                <td><input type="text" name="lastboot" value="{{ server.lastboot }}"></td>
+            </tr>
+            <tr>
+                <td>Autopatch:</td>
+                <td><input type="checkbox" name="aap_autopatch" {% if server.aap_autopatch %}checked{% endif %}></td>
+            </tr>
+            <tr>
+                <td>Patch window:</td>
+                <td><input type="text" name="aap_patch_env" value="{{ server.aap_patch_env }}"> Batch <input type="text" name="aap_patch_batch" value="{{ server.aap_patch_batch }}">-<input type="text" name="aap_patch_patchtime" value="{{ server.aap_patch_patchtime }}"></td>  <!-- This line is too long -->
+            </tr>
+            <tr>
+                <td>Jan:</td>
+                <td><input type="text" name="aap_patch_window_scheduled_jan" value="{{ server.aap_patch_window_scheduled_jan }}"></td>  
+            </tr>
+            <tr>
+                <td>Feb:</td>
+                <td><input type="text" name="aap_patch_window_scheduled_feb" value="{{ server.aap_patch_window_scheduled_feb }}"></td>
+            </tr>
+            <tr>
+                <td>Mar:</td>
+                <td><input type="text" name="aap_patch_window_scheduled_mar" value="{{ server.aap_patch_window_scheduled_mar }}"></td>
+            </tr>
+            <tr>
+                <td>Apr:</td>
+                <td><input type="text" name="aap_patch_window_scheduled_apr" value="{{ server.aap_patch_window_scheduled_apr }}"></td>
+            </tr>
+            <tr>
+                <td>May:</td>
+                <td><input type="text" name="aap_patch_window_scheduled_may" value="{{ server.aap_patch_window_scheduled_may }}"></td>
+            </tr>
+            <tr>
+                <td>Jun:</td>
+                <td><input type="text" name="aap_patch_window_scheduled_jun" value="{{ server.aap_patch_window_scheduled_jun }}"></td>
+            </tr>
+            <tr>
+                <td>Jul:</td>
+                <td><input type="text" name="aap_patch_window_scheduled_jul" value="{{ server.aap_patch_window_scheduled_jul }}"></td>
+            </tr>
+            <tr>
+                <td>Aug:</td>
+                <td><input type="text" name="aap_patch_window_scheduled_aug" value="{{ server.aap_patch_window_scheduled_aug }}"></td>
+            </tr>
+            <tr>
+                <td>Sep:</td>
+                <td><input type="text" name="aap_patch_window_scheduled_sep" value="{{ server.aap_patch_window_scheduled_sep }}"></td>
+            </tr>
+            <tr>
+                <td>Oct:</td>
+                <td><input type="text" name="aap_patch_window_scheduled_oct" value="{{ server.aap_patch_window_scheduled_oct }}"></td>
+            </tr>
+            <tr>
+                <td>Nov:</td>
+                <td><input type="text" name="aap_patch_window_scheduled_nov" value="{{ server.aap_patch_window_scheduled_nov }}"></td>
+            </tr>
+            <tr>
+                <td>Dec:</td>
+                <td><input type="text" name="aap_patch_window_scheduled_dec" value="{{ server.aap_patch_window_scheduled_dec }}"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}
+
+
+            
+
