@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view
 from .models import server, zone, region, appid, environment, serverrole
 from .serializers import ServerSerializer, ZoneSerializer, RegionSerializer, AppidSerializer, EnvironmentSerializer, ServerroleSerializer
 
+import time
 import subprocess
 import tempfile
 import os
@@ -217,6 +218,7 @@ class inventory(ListView):
                             for myserver in server.objects.filter(appid=myappid, environment=myenvironment):
                                 payload[myappid.appid][myenvironment.name][myregion.name][myzone.name][myserverrole.name].append(myserver.name)
         fulltekst = []
+        parsedinv = ""
         # create temporary directory
         tempdir = tempfile.TemporaryDirectory()
         # clone git repository to temporary directory
@@ -345,11 +347,19 @@ class inventory(ListView):
                     f.write(myline + "\n")
                 f.close()
                 subprocess.run(["git", "add", os.path.join(tempdir.name + "/common.inventory", key)], cwd=tempdir.name +"/common.inventory")
+                #gitdif = subprocess.run(["git", "diff", "--minimal"], cwd=tempdir.name +"/common.inventory", stdout=subprocess.PIPE)
+                #itdiff = gitdif.stdout.decode('utf-8')
+                
+
                 subprocess.run(["git", "commit", "-m", "updated inventory"], cwd=tempdir.name +"/common.inventory")
                 subprocess.run(["git", "push"], cwd=tempdir.name +"/common.inventory")
-                subprocess.run(["ansible-inventory", "--list", "-i", os.path.join(tempdir.name + "/common.inventory", key)])
-                fulltekst.append(tekst)
-
+                ansinv = subprocess.run(["ansible-inventory", "--list", "-i", os.path.join(tempdir.name + "/common.inventory", key)], cwd=tempdir.name +"/common.inventory", stdout=subprocess.PIPE)
+                print( json.loads(ansinv.stdout))
+                humandate = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+                if ansinv.returncode == 0:
+                    fulltekst.append("<li>" + humandate + " : Inventory for <B>" + key + "</B> successfully updated in git repository</li>\n")
+                else:
+                    fulltekst.append("<li>" + humandate + " : Inventory for <B>" + key + "</B> failed to update in git repository </li>\n")
 
                 # we need to save the tekst in a file
         tempdir.cleanup()
