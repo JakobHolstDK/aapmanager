@@ -341,22 +341,19 @@ class inventory(ListView):
                                             tekst.append(myline)
 
                             f = open(os.path.join(tempdir.name + "/common.inventory", key), "w")
-                    for myline in tekst:
-                        f.write(myline + "\n")
-                    f.close()
-                    subprocess.run(["git", "add", os.path.join(tempdir.name + "/common.inventory", key)], cwd=tempdir.name +"/common.inventory")
-                    subprocess.run(["git", "commit", "-m", "updated inventory"], cwd=tempdir.name +"/common.inventory")
-                    subprocess.run(["git", "push"], cwd=tempdir.name +"/common.inventory")
-
-
-                # we need to save the tekst in a file
-                filename = os.path.join(tempdir.name, key )
-                f = open(filename, "w")
                 for myline in tekst:
                     f.write(myline + "\n")
                 f.close()
+                subprocess.run(["git", "add", os.path.join(tempdir.name + "/common.inventory", key)], cwd=tempdir.name +"/common.inventory")
+                subprocess.run(["git", "commit", "-m", "updated inventory"], cwd=tempdir.name +"/common.inventory")
+                subprocess.run(["git", "push"], cwd=tempdir.name +"/common.inventory")
+                subprocess.run(["ansible-inventory", "--list", "-i", os.path.join(tempdir.name + "/common.inventory", key)])
                 fulltekst.append(tekst)
+
+
+                # we need to save the tekst in a file
         tempdir.cleanup()
+
         return fulltekst
 
 #appid_6661:children]

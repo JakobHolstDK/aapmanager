@@ -1,0 +1,105 @@
+[appid_10]
+[appid_10:children]
+appid_10_development_emea_cdc
+appid_10_development_emea_dmz
+appid_10_test_emea_cdc
+appid_10_test_emea_dmz
+appid_10_qa_emea_cdc
+appid_10_qa_emea_dmz
+appid_10_production_emea_cdc
+appid_10_development_emea_dmz
+ 
+[appid_10:vars]
+appname="SAP ERP S/4HANA"
+appstatus="active"
+appowner="Steen Nørr Frandsen"
+appstatus="active"
+subsystems_required=controlplatform
+# BigFix variables
+managedhost_client_appid=10
+managedhost_client_company=DSV
+ 
+[appid_10_production]
+[appid_10_production:children]
+appid_10_production_emea_cdc
+appid_10_production_emea_dmz
+ 
+[appid_10_production:vars]
+# AAP
+environment=appid_10_production
+# BigFix variables
+managedhost_client_env=Production
+ 
+[appid_10_test]
+[appid_10_test:children]
+appid_10_test_emea_cdc
+appid_10_test_emea_dmz
+ 
+[appid_10_test:vars]
+# AAP
+environment=appid_10_test
+# BigFix variables
+managedhost_client_env=test
+ 
+[appid_10_qa]
+[appid_10_qa:children]
+appid_10_qa_emea_cdc
+appid_10_qa_emea_dmz
+ 
+[appid_10_qa:vars]
+# AAP
+environment=appid_10_qa
+# BigFix variables
+managedhost_client_env=qa
+ 
+[appid_10_development]
+[appid_10_development:children]
+appid_10_development_emea_cdc
+appid_10_development_emea_dmz
+ 
+[appid_10_development:vars]
+# AAP
+environment=appid_10_development
+# BigFix variables
+managedhost_client_env=development
+ 
+[appid_10_development_emea_cdc]
+eccboxapp11.dsv.com
+hanacboxdb10.dsv.com  ansible_host=145.218.199.178
+hanacboxdb11.dsv.com  ansible_host=145.218.199.231
+eccdevapp10.dsv.com
+hanacdevdb10.dsv.com  ansible_host=145.218.199.127
+j2edevapp20.dsv.com   ansible_host=145.218.246.215
+sapdevdb1.dsv.com     ansible_host=145.218.246.15
+ 
+[appid_10_development_emea_dmz]
+ 
+[appid_10_test_emea_cdc]
+i37083.dsv.com
+ 
+[appid_10_test_emea_dmz]
+ 
+[appid_10_qa_emea_cdc]
+eccqaapp10.dsv.com
+eccqaapp11.dsv.com
+hanacqadb10.dsv.com   ansible_host=145.218.199.50
+hanacqadb11.dsv.com   ansible_host=145.218.199.51
+ 
+[appid_10_qa_emea_dmz]
+ 
+[appid_10_production_emea_cdc]
+eccprddb1
+eccprddb2.dsv.com
+eccprdapp10.dsv.com
+eccprdapp11.dsv.com
+eccprdapp12.dsv.com
+eccprdapp13.dsv.com
+eccprdapp14.dsv.com
+eccprdapp15.dsv.com
+j2eprdapp21.dsv.com   ansible_host=145.218.246.217
+j2eprdapp20.dsv.com   ansible_host=145.218.246.216
+hanacprddb10.dsv.com  ansible_host=145.218.199.229
+hanacprddb11.dsv.com  ansible_host=145.218.199.230
+ 
+[appid_10_production_emea_dmz]
+ 

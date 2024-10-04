@@ -1,0 +1,118 @@
+# this is an ansible inventory file, i need to create a model for a dynamic inventory
+# this is a static inventory file
+
+
+[appid_6661]
+[appid_6661:children]
+appid_6661_production_afri_cdc
+appid_6661_production_amer_cdc
+appid_6661_production_apac_cdc
+appid_6661_production_emea_cdc
+appid_6661_test_emea_cdc
+
+[appid_6661:vars]
+appname="Ansible Automation Platform"
+appstatus="active"
+appowner="Lars Heglund"
+subsystems_required=controlplatform
+# BigFix variables
+managedhost_client_appid=10
+managedhost_client_company=DSV
+
+[appid_6661_production]
+[appid_6661_production:children]
+appid_6661_production_afri_cdc
+appid_6661_production_amer_cdc
+appid_6661_production_apac_cdc
+appid_6661_production_emea_cdc
+
+[appid_6661_production:vars]
+# AAP
+environment=production
+# BigFix variables
+managedhost_client_env=Production
+
+[appid_6661_test]
+[appid_6661_test:children]
+appid_6661_test_afri_cdc
+appid_6661_test_amer_cdc
+appid_6661_test_apac_cdc
+appid_6661_test_emea_cdc
+
+[appid_6661_test:vars]
+# AAP
+environment=test
+# BigFix variables
+managedhost_client_env=Test
+
+
+[appid_6661_test_emea_cdc]
+i34259.dsv.com systemrole="controller" 
+i34260.dsv.com systemrole="execution"  
+i34261.dsv.com systemrole="hub"        
+i34262.dsv.com systemrole="database"   
+i31989.dsv.com systemrole="ansible"    
+i36791.dsv.com systemrole="manager"    
+i34297.dsv.com systemrole="event"      
+
+[appid_6661_production_emea_cdc]
+i32017.dsv.com systemrole=ansible    
+i34268.dsv.com systemrole=execution  
+i34269.dsv.com systemrole=execution  
+i34276.dsv.com systemrole=controller 
+i34277.dsv.com systemrole=controller 
+i34290.dsv.com systemrole=execution  
+i34291.dsv.com systemrole=execution  
+i34292.dsv.com systemrole=database   
+i34293.dsv.com systemrole=database   
+i34294.dsv.com systemrole=hub        
+i34295.dsv.com systemrole=hub 
+i34296.dsv.com systemrole=event
+
+[appid_6661_production_afri_cdc]
+i34278.dsv.com systemrole=execution
+i34281.dsv.com systemrole=execution 
+
+[appid_6661_production_amer_cdc]
+i34279.dsv.com systemrole=execution 
+i34282.dsv.com systemrole=execution
+
+[appid_6661_production_apac_cdc]
+i34307.dsv.com ansible_ssh_common_args='-J dsvjump1.dsv.com' systemrole=execution 
+i34308.dsv.com ansible_ssh_common_args='-J dsvjump1.dsv.com' systemrole=execution
+
+[afri_cdc:children]
+appid_6661_production_afri_cdc 
+
+[afri_dmz:children]
+
+[amer_cdc:children]
+appid_6661_production_amer_cdc
+
+[apac_cdc:children]
+appid_6661_production_apac_cdc
+
+[amer_dmz:children]
+
+[apac_cdc:children]
+appid_6661_production_apac_cdc
+
+[apac_dmz:children]
+
+[emea_cdc:children]
+appid_6661_test_emea_cdc
+appid_6661_production_emea_cdc
+
+[emea_dmz:children]
+
+[emea_dmzexn:children]
+
+[appid_6661_test_emea_cdc:vars]
+
+[appid_6661_production_emea_cdc:vars]
+
+[appid_6661_production_afri_cdc:vars]
+
+[appid_6661_production_amer_cdc:vars]
+
+[appid_6661_production_apac_cdc:vars]
