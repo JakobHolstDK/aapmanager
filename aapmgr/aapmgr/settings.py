@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ee',
     'api',
     'serverinfo',
+    'inventory',
     'rest_framework',
     'django_tables2',
     'tutorial',
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'aapmgr.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["ee/templates"],
+        'DIRS': ["aapmgr/templates", "serverinfo/templates", "inventory/templates", "tutorial/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,13 +80,22 @@ WSGI_APPLICATION = 'aapmgr.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+dbhost = os.environ.get("AAPMANAGER_DB_HOST", "localhost")
+dbport = os.environ.get("AAPMANAGER_DB_PORT", "5432")
+dbuser = os.environ.get("AAPMANAGER_DB_USER", "aapmanager")
+dbname = os.environ.get("AAPMANAGER_DB_NAME", "aapmanager")
+dbpass = os.environ.get("AAPMANAGER_DB_PASS", "ixj90j2s")
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': dbname,
+        'USER': dbuser,
+        'PASSWORD': dbpass,
+        'HOST': dbhost,
+        'PORT': dbport,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
