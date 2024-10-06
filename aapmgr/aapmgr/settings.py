@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'api',
     'serverinfo',
     'inventory',
+    'application',
     'rest_framework',
     'django_tables2',
     'tutorial',

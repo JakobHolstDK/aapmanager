@@ -94,7 +94,10 @@ class server(models.Model):
         return self.name
     
 
-    
+# application 
+# "Identifier","Name","Application Lifecycle Stage","SLA Applications","Crown Jewel","Application is owned by IT Vertical","Application has Service Owner.Name","Application has Service Owner.E-Mail","Planned Retiring Date","Actual Retiring Date","TIME Evaluation","Justification for Tolerate (TIME)","Application Subtype","Application has IT Service.ApnlId","Application has IT Service.IT Service Name","Description","Application has primary Capability","Application has primary Capability IT Owner","Application has primary Capability Business Owner","Application has secondary Capability","Deployment","Developed / Purchased","Application has Business Releationship Manager.Name","Application has Business Releationship Manager.E-Mail","Application has Business Owner.Name","Application has Business Owner.E-Mail","Application has Technical Subject Matter Expert.Name","Application has Technical Subject Matter Expert.E-Mail","Application has Product Owner.Name","Application has Product Owner.E-Mail","Application has Release Manager.Name","Application has Release Manager.E-Mail","Application has Application Subject Matter Expert.Name","Application has Application Subject Matter Expert.E-Mail","Application has Contract.ContractNumber","Application has Company Code.Code","Application has Company Code.Name","Application is used by Division","Application is used by Country.Iso","Application is used by Country.Name","Origin","Recovery Time Objective","Recovery Point Objective","Application requires Application","Application is required by Application","Alias","System of Record","System of Record Source Date","Top/Supporting Top","Application is supplied by Vendor","BRM Comment"
+# 
+
 
     
     

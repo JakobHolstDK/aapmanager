@@ -5,6 +5,10 @@ from django.views.generic import ListView
 from rest_framework.decorators import api_view
 from .models import server, zone, region, appid, environment, serverrole
 from .serializers import ServerSerializer, ZoneSerializer, RegionSerializer, AppidSerializer, EnvironmentSerializer, ServerroleSerializer
+from .models import organization, project
+from .serializers import OrganizationSerializer, ProjectSerializer
+from rest_framework import status
+
 
 import time
 import subprocess
@@ -162,6 +166,58 @@ class ServerroleViewSet(viewsets.ModelViewSet):
         serializer = ServerroleSerializer(queryset, many=True)
         return Response(serializer.data)
     
+
+class OrganizationViewSet(viewsets.ModelViewSet):
+    queryset = organization.objects.all()
+    serializer_class = OrganizationSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data, many=isinstance(request.data, list))
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+    def perform_create(self, serializer):
+        serializer.save()
+
+    def perform_update(self, serializer):
+        serializer.save()
+
+    def perform_destroy(self, instance):
+        instance.delete()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = OrganizationSerializer(queryset, many=True)
+        return Response(serializer.data)
+    
+class ProjectViewSet(viewsets.ModelViewSet):
+    queryset = project.objects.all()
+    serializer_class = ProjectSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data, many=isinstance(request.data, list))
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+    def perform_create(self, serializer):
+        serializer.save()
+
+    def perform_update(self, serializer):
+        serializer.save()
+
+    def perform_destroy(self, instance):
+        instance.delete()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = ProjectSerializer(queryset, many=True)
+        return Response(serializer.data)
+    
+        
 class EnvironmentViewSet(viewsets.ModelViewSet):
     queryset = environment.objects.all()
     serializer_class = EnvironmentSerializer
