@@ -12,6 +12,7 @@ def run_cmd(cmd):
     return result.stdout.decode('utf-8')
 
 def main():
+    print("Versioon 1.0")
     print("Deploying aapmanager")
     remote_host = "aapmanager"
     remote_dir = "/opt/aapmanager/development/"
@@ -42,6 +43,6 @@ def main():
     
 if __name__ == "__main__":
     main()
-    
+
 
                 
