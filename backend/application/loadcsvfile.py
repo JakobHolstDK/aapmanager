@@ -139,7 +139,7 @@ with open(filename, newline='') as csvfile:
           # send the data to the server
           response = requests.post('http://aapmanager.dsv.com:9990/application/api/applications/', headers=headers, data=json.dumps(data), verify=False)
 
-          if response.status_code == 201:
+          if response.status_code == 201 or response.status_code == 400:
               pass
           else:
               print("Error sending data")
