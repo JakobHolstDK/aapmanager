@@ -14,10 +14,9 @@ def update_applications():
     response = requests.get(url)
     data = response.json()
 
-    if application["Application_has_Service_Owner_Name"] == "":
-        application["Application_has_Service_Owner_Name"] = "Unknown"
-
     for application in data:
+        if application["Application_has_Service_Owner_Name"] == "":
+          application["Application_has_Service_Owner_Name"] = "Unknown"
         payload = {
             "appid": application["Identifier"],
             "appname": application["Name"],
