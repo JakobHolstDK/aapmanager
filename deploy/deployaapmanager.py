@@ -18,7 +18,7 @@ def run_cmd_background(cmd):
 
 def main():
     while True:
-        print("Version 1.1.0.2")
+        print("Version 1.1.0.3")
         print("Deploying aapmanager")
         remote_host = "aapmanager"
         remote_dir = "/opt/aapmanager/development/"
