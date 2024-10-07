@@ -72,9 +72,6 @@ with open(filename, newline='') as csvfile:
   data = {}
   for row in reader:
       # print the row
-      print(row)
-      time.sleep(10)
-
       # if the row is not empty
       if row:
           # pass if the row is the header
