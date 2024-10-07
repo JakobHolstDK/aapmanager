@@ -89,6 +89,14 @@ dbpass = os.environ.get("AAPMANAGER_DB_PASS", "ixj90j2s")
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+"""
+DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': dbname,
         'USER': dbuser,
@@ -97,7 +105,7 @@ DATABASES = {
         'PORT': dbport,
     }
 }
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
