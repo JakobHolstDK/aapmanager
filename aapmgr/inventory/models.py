@@ -22,7 +22,7 @@ class appid(models.Model):
     )
 
     appid = models.CharField(max_length=255 , unique=True)
-    appname = models.CharField(max_length=255)
+    appname = models.CharField(max_length=1024)
     appowner = models.CharField(max_length=255)
     appcontact = models.CharField(max_length=255)
     aapstatus = models.CharField(max_length=255, choices=statuschoices)
