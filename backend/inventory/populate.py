@@ -39,7 +39,7 @@ def main():
     
     
 
-
+"""
 
 
 
@@ -70,3 +70,7 @@ def main():
         # post the server to the serverinfo api
         requests.post("http:///", json=digested_server)
         print(f"Posted server {server['Host Name']}")
+"""
+
+if __name__ == "__main__":
+    main()
