@@ -41,7 +41,7 @@ class application(models.Model):
     Application_has_Company_Code_Name = models.CharField(max_length=255,    blank=True, null=True)
     Application_is_used_by_Division = models.CharField(max_length=255, blank=True, null=True)
     Application_is_used_by_Country_Iso = models.CharField(max_length=255, blank=True, null=True)
-    Application_is_used_by_Country_Name = models.CharField(max_length=255,  blank=True, null=True)
+    Application_is_used_by_Country_Name = models.CharField(max_length=1024,  blank=True, null=True)
     Origin = models.CharField(max_length=255, blank=True, null=True)
     Recovery_Time_Objective = models.CharField(max_length=255, blank=True, null=True)
     Recovery_Point_Objective = models.CharField(max_length=255,     blank=True, null=True)
