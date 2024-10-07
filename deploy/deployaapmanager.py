@@ -37,9 +37,13 @@ def main():
         run_cmd("ssh aapmanager /opt/aapmanager/development/aapmgr/venv/bin/pip install -r /opt/aapmanager/development/aapmgr/requirements.txt")
         run_cmd("ssh aapmanager /opt/aapmanager/development/aapmgr/venv/bin/python /opt/aapmanager/development/aapmgr/manage.py migrate")
         run_cmd("ssh aapmanager /opt/aapmanager/development/aapmgr/venv/bin/python /opt/aapmanager/development/aapmgr/manage.py collectstatic --noinput")
-        run_cmd("ssh aapmanager systemctl restart aapmanager")
+        run_cmd("ssh aapmanager systemctl --user restart aapmanager")
     else:
         print(f"Branch {current_branch} has not changed")
+
+    # ensure we have a ssh port forward to the remote host
+    run_cmd("ssh -L 5432:localhost:5432 aapmanager")
+
     
 if __name__ == "__main__":
     main()

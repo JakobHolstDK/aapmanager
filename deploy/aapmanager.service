@@ -7,9 +7,8 @@ Description=AppManager Service
 After=network.target
 
 [Service]
-User=your_user
 WorkingDirectory=/opt/aapmanager/development/aapmgr
-ExecStart=/opt/aapmanager/development/aapmgr/venv/bin/python runserver 0.0.0.0:9990 
+ExecStart=cd /opt/aapmanager/development/aapmgr && /venv/bin/python runserver 0.0.0.0:9990 
 Restart=always
 Environment=PYTHONUNBUFFERED=1
 
