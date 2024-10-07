@@ -45,7 +45,7 @@ class application(models.Model):
     Origin = models.CharField(max_length=255, blank=True, null=True)
     Recovery_Time_Objective = models.CharField(max_length=255, blank=True, null=True)
     Recovery_Point_Objective = models.CharField(max_length=255,     blank=True, null=True)
-    Application_requires_Application = models.CharField(max_length=2048, blank=True, null=True)
+    Application_requires_Application = models.CharField(max_length=8192, blank=True, null=True)
     Application_is_required_by_Application = models.CharField(max_length=2048, blank=True, null=True)
     Alias = models.CharField(max_length=255, blank=True, null=True)
     System_of_Record = models.CharField(max_length=255,     blank=True, null=True)
