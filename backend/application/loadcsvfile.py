@@ -150,5 +150,4 @@ with open(filename, newline='') as csvfile:
               print(response.status_code)
           print(response.text)
           print(response.status_code)
-          time.sleep(10)
 
