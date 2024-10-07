@@ -3,3 +3,4 @@
 __pycache__
 migrations
 aapmgr/db.sqlite3
+aapmgr/__pycache__
