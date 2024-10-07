@@ -10,6 +10,7 @@ def run_cmd(cmd):
     return result.stdout.decode('utf-8')
 
 def main():
+    print("Deploying aapmanager")
     remote_host = "aapmanager"
     remote_dir = "/opt/aapmanager/development/"
     # get the current branch
