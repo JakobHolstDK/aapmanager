@@ -20,7 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Include the urls from the aapmgr app
-    path('serverinfo', include('serverinfo.urls')),
+    path('serverinfo/', include('serverinfo.urls')),
     path('inventory/', include('inventory.urls')),
     path('application/', include('application.urls')),
 ]

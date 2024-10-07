@@ -57,13 +57,13 @@ def main():
     # for each server in the data
     for server in data:
         # post the data to the server
-        response = requests.post("http://localhost:8000/api/serverinfo/", data=server)
+        response = requests.post("http://localhost:9990/serverinfo/assets/", data=server)
         print(response.text)
         time.sleep(1)
     return
 
 if __name__ == "__main__":
     main()
-    
+
 
 
