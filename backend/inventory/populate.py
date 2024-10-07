@@ -15,6 +15,9 @@ def update_applications():
     data = response.json()
 
     for application in data:
+        if application["Application_has_Technical_Subject_Matter_Expert_Name"] == "":
+          application["Application_has_Technical_Subject_Matter_Expert_Name"] = "Unknown"
+          
         if application["Application_has_Service_Owner_Name"] == "":
           application["Application_has_Service_Owner_Name"] = "Unknown"
         payload = {
