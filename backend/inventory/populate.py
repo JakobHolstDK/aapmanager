@@ -52,12 +52,16 @@ def update_servers():
         print(server)
         print("------------------------------")
 
-        
+
 
 
 def main():
     
-    update_applications()
+    #update_applications()
+    update_servers()
+    return
+
+
 
     
     
