@@ -12,7 +12,7 @@ def run_cmd(cmd):
     return result.stdout.decode('utf-8')
 
 def main():
-    print("Versioon 1.0")
+    print("Version 1.1.0.1")
     print("Deploying aapmanager")
     remote_host = "aapmanager"
     remote_dir = "/opt/aapmanager/development/"
@@ -31,7 +31,6 @@ def main():
     if remote_branch_hash != current_branch_hash:
         print(f"Branch {current_branch} has changed, deploying branch {remote_branch_name}")
         # deploy the remote branch
-        run_cmd("ssh git pull")
         run_cmd("git checkout " + remote_branch_name)
         run_cmd("git pull")
         run_cmd("scp -r ./* " + remote_host + ":" + remote_dir)
