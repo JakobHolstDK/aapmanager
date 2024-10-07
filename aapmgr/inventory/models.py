@@ -21,7 +21,7 @@ class appid(models.Model):
         ('Inactive', 'Inactive')
     )
 
-    appid = models.CharField(max_length=255)
+    appid = models.CharField(max_length=255, primary_key=True)
     appname = models.CharField(max_length=255)
     appowner = models.CharField(max_length=255)
     appcontact = models.CharField(max_length=255)
