@@ -73,6 +73,8 @@ with open(filename, newline='') as csvfile:
   for row in reader:
       # print the row
       print(row)
+      time.sleep(10)
+      
       # if the row is not empty
       """
       if row:
