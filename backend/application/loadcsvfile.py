@@ -152,6 +152,3 @@ with open(filename, newline='') as csvfile:
           print(response.status_code)
           time.sleep(10)
 
-
-
-"""
