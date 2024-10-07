@@ -59,21 +59,21 @@ def main():
     for server in data:
         print(server)
         digested_server = {
-            "hostname": server["Host Name"],
-            "computername": server["Computer Name"],
+            "host_name": server["Host Name"],
+            "computer_name": server["Computer Name"],
             "environment": server["Environment"],
             "datacenterlocation": server["DataCenterLocation"],
-            "vmwaredatacenter": server["VMWare Datacenter"],
+            "vmware_datacenter": server["VMWare Datacenter"],
             "function": server["Function"],
-            "technicalcontacts": server["Technical Contacts"],
+            "technical_contacts": server["Technical Contacts"],
             "country": server["Country"],
-            "supporthours": server["Support Hours"],
+            "support_hours": server["Support Hours"],
             "guard": server["Guard"],
-            "applicationid": server["Application ID"],
-            "applicationname": server["Application Name"],
-            "anumber": server["A-Number"],
+            "application_id": server["Application ID"],
+            "application_name": server["Application Name"],
+            "a_number": server["A-Number"],
             "deploydate": server["DeployDate"],
-            "assetstatus": server["Asset Status"]
+            "asset_status": server["Asset Status"]
         }
 
 
