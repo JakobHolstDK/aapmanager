@@ -17,7 +17,7 @@ def update_applications():
     for application in data:
         if application["Application_has_Technical_Subject_Matter_Expert_Name"] == "":
           application["Application_has_Technical_Subject_Matter_Expert_Name"] = "Unknown"
-          
+
         if application["Application_has_Service_Owner_Name"] == "":
           application["Application_has_Service_Owner_Name"] = "Unknown"
         payload = {
@@ -43,12 +43,22 @@ def update_applications():
             time.sleep(0.1)
 
     
+def update_servers():
+    data = subprocess.run(["serverinfo.py"], stdout=subprocess.PIPE)
+
+    data = json.loads(data.stdout)
+    url = "http://aapmanager.dsv.com:9990/inventory/api/servers/"
+    for server in data:
+        print(server)
+        print("------------------------------")
+
+        
 
 
 def main():
     
     update_applications()
-    
+
     
     
 
