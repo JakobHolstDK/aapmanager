@@ -14,6 +14,9 @@ def update_applications():
     response = requests.get(url)
     data = response.json()
 
+    if application["Application_has_Service_Owner_Name"] == "":
+        application["Application_has_Service_Owner_Name"] = "Unknown"
+
     for application in data:
         payload = {
             "appid": application["Identifier"],
@@ -23,6 +26,7 @@ def update_applications():
             "aapstatus": "Active",
             "configitems": {}
             }
+        
         
         if application["Application_Lifecycle_Stage"] != "Retired":
             application["Application_Lifecycle_Stage"] = "Retired"
