@@ -1,13 +1,13 @@
 from django.db import models
 class organization(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
     configitems = models.JSONField(blank=True,null=True)
     def __str__(self):
         return self.name
 
 class project(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
     suource = models.URLField(blank=True, null=True)
     documentation = models.URLField(blank=True, null=True)
@@ -21,7 +21,7 @@ class appid(models.Model):
         ('Inactive', 'Inactive')
     )
 
-    appid = models.CharField(max_length=255, primary_key=True)
+    appid = models.CharField(max_length=255, unique=True)
     appname = models.CharField(max_length=255)
     appowner = models.CharField(max_length=255)
     appcontact = models.CharField(max_length=255)
@@ -40,7 +40,7 @@ class environment(models.Model):
         ('preproduction', 'Pre-Production')
     )
 
-    name = models.CharField(max_length=255, choices=environmentchoices)
+    name = models.CharField(max_length=255, choices=environmentchoices, unique=True)
     description = models.TextField(blank=True, null=True)
     configitems = models.JSONField(blank=True,null=True)
     def __str__(self):
@@ -54,7 +54,7 @@ class region(models.Model):
         ('amer', 'Americas'),
         ('afri', 'Africa')
     )
-    name = models.CharField(max_length=255, choices=reguinchoices)
+    name = models.CharField(max_length=255, choices=reguinchoices,  unique=True)
     description = models.TextField(blank=True, null=True)
     configitems = models.JSONField(blank=True,null=True)
     def __str__(self):
@@ -65,14 +65,14 @@ class zone(models.Model):
         ('dmz', 'DMZ'),
         ('cdc', 'core'),
     ) 
-    name = models.CharField(max_length=255, choices=zonechoices)
+    name = models.CharField(max_length=255, choices=zonechoices,    unique=True)
     description = models.TextField(blank=True, null=True)
     configitems = models.JSONField(blank=True,null=True)
     def __str__(self):
         return self.name
     
 class serverrole(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
     source = models.URLField(blank=True, null=True)
     documentation = models.URLField(blank=True, null=True)
@@ -81,7 +81,7 @@ class serverrole(models.Model):
         return self.name
     
 class server(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
     appid = models.ForeignKey(appid, on_delete=models.CASCADE)
     environment = models.ForeignKey(environment, on_delete=models.CASCADE)
