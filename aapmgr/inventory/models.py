@@ -21,7 +21,7 @@ class appid(models.Model):
         ('Inactive', 'Inactive')
     )
 
-    appid = models.CharField(max_length=255, unique=True)
+    appid = models.CharField(max_length=255 , unique=True)
     appname = models.CharField(max_length=255)
     appowner = models.CharField(max_length=255)
     appcontact = models.CharField(max_length=255)
@@ -83,7 +83,8 @@ class serverrole(models.Model):
 class server(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
-    appid = models.ForeignKey(appid, on_delete=models.CASCADE)
+    #appid = models.ForeignKey(appid, on_delete=models.CASCADE)
+    organization = models.ForeignKey(organization, on_delete=models.CASCADE)
     environment = models.ForeignKey(environment, on_delete=models.CASCADE)
     region = models.ForeignKey(region, on_delete=models.CASCADE)
     zone = models.ForeignKey(zone, on_delete=models.CASCADE)
