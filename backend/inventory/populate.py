@@ -27,6 +27,9 @@ def update_applications():
         if application["Application_Lifecycle_Stage"] != "Retired":
             application["Application_Lifecycle_Stage"] = "Retired"
             response = requests.post(dest_url, json=payload, verify=False)
+            print(response.status_code)
+            print(response.text)
+            
             print(f"Updated application {application['Name']}")
 
     
