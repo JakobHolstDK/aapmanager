@@ -29,8 +29,12 @@ def update_applications():
             response = requests.post(dest_url, json=payload, verify=False)
             print(response.status_code)
             print(response.text)
-            
+
             print(f"Updated application {application['Name']}")
+            time.sleep(0.1)
+        else:
+            print(f"Application {application['Name']} is already retired")
+            time.sleep(0.1)
 
     
 
