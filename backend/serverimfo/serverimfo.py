@@ -56,6 +56,8 @@ def main():
     data = json.loads(data.stdout)
     # for each server in the data
     for server in data:
+        print(server)
+        
         # post the data to the server
         response = requests.post("http://aapmanager.dsv.com:9990/serverinfo/api/assets/", data=server, verify=False)
         print(response.text)
