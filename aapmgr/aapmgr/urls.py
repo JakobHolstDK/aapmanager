@@ -22,4 +22,5 @@ urlpatterns = [
     # Include the urls from the aapmgr app
     path('serverinfo', include('serverinfo.urls')),
     path('inventory/', include('inventory.urls')),
+    path('application/', include('application.urls')),
 ]
