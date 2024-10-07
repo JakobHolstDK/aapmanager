@@ -16,11 +16,11 @@ def update_applications():
 
     for application in data:
         payload = {
-            "appid": data["Identifier"],
-            "appname": data["Name"],
-            "appowner": data["Application_has_Service_Owner_Name"],
-            "appcontact": data["Application_has_Technical_Subject_Matter_Expert_Name"],
-            "aapstatus": data["Application_Lifecycle_Stage"],
+            "appid": application["Identifier"],
+            "appname": application["Name"],
+            "appowner": application["Application_has_Service_Owner_Name"],
+            "appcontact": application["Application_has_Technical_Subject_Matter_Expert_Name"],
+            "aapstatus": application["Application_Lifecycle_Stage"],
             "configitems": {}
             }
         
