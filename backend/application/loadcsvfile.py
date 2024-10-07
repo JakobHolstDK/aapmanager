@@ -1,5 +1,6 @@
 # load csv file to database
 #
+import time
 import csv
 from sys import argv
 import requests
@@ -134,6 +135,15 @@ with open(filename, newline='') as csvfile:
           # send the data to the server
           response = requests.post('http://aapmanager.dsv.com:9990/application/api/applications/', headers=headers, data=json.dumps(data), verify=False)
 
+          if response.status_code == 201:
+              print("Data sent successfully")
+          else:
+              print("Error sending data")
+              print(response.text)
+              print(response.status_code)
+          print(response.text)
+          print(response.status_code)
+          time.sleep(10)
 
 
 
