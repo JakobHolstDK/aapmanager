@@ -132,7 +132,7 @@ with open(filename, newline='') as csvfile:
               'Content-Type': 'application/json',
           } 
           # send the data to the server
-          response = requests.post('http://localhost:9990/application/', headers=headers, data=json.dumps(data), verify=False)
+          response = requests.post('http://aapmanager.dsv.com:9990/application/api/applications/', headers=headers, data=json.dumps(data), verify=False)
 
 
 
