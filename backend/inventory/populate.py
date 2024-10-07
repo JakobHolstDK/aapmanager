@@ -20,7 +20,7 @@ def update_applications():
             "appname": application["Name"],
             "appowner": application["Application_has_Service_Owner_Name"],
             "appcontact": application["Application_has_Technical_Subject_Matter_Expert_Name"],
-            "aapstatus": application["Application_Lifecycle_Stage"],
+            "aapstatus": "Active",
             "configitems": {}
             }
         
