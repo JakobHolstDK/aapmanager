@@ -16,6 +16,7 @@ def main():
     print("Deploying aapmanager")
     remote_host = "aapmanager"
     remote_dir = "/opt/aapmanager/development/"
+    run_cmd("git fetch")
     # get the current branch
     current_branch = run_cmd("git rev-parse --abbrev-ref HEAD").strip()
     # get the remote branch
