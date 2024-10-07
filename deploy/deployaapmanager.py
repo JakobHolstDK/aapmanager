@@ -45,6 +45,9 @@ def main():
 
         # ensure we have a ssh port forward to the remote host
         run_cmd("ssh -L 5432:localhost:5432 aapmanager")
+        print("Sleeping for 60 seconds")
+        time.sleep(60)
+        print("loooooooooop")
 
     
 if __name__ == "__main__":
