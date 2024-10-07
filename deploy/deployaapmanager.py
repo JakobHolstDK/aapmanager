@@ -39,5 +39,9 @@ def main():
         run_cmd("ssh systemctl restart aapmanager")
     else:
         print(f"Branch {current_branch} has not changed")
+    
+if __name__ == "__main__":
+    main()
+    
 
                 
