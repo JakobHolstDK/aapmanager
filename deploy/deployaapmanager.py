@@ -44,7 +44,7 @@ def main():
             print(f"Branch {current_branch} has not changed")
 
         # ensure we have a ssh port forward to the remote host
-        run_cmd("ssh -L 5432:localhost:5432 aapmanager slepp 60000")
+        run_cmd("ssh -L 5432:localhost:5432 aapmanager sleep 60000")
         print("Sleeping for 60 seconds")
         time.sleep(60)
         print("loooooooooop")
