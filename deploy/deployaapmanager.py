@@ -11,10 +11,14 @@ import time
 def run_cmd(cmd):
     result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
     return result.stdout.decode('utf-8')
+def run_cmd_background(cmd):
+    subprocess.Popen(cmd, shell=True)
+    return
+
 
 def main():
     while True:
-        print("Version 1.1.0.1")
+        print("Version 1.1.0.2")
         print("Deploying aapmanager")
         remote_host = "aapmanager"
         remote_dir = "/opt/aapmanager/development/"
@@ -44,7 +48,7 @@ def main():
             print(f"Branch {current_branch} has not changed")
 
         # ensure we have a ssh port forward to the remote host
-        run_cmd("ssh -L 5432:localhost:5432 aapmanager sleep 60000")
+        run_cmd_background("ssh -L 5432:localhost:5432 aapmanager sleep 60000")
         print("Sleeping for 10 seconds")
         time.sleep(10)
         print("loooooooooop")
