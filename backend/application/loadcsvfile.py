@@ -81,7 +81,7 @@ with open(filename, newline='') as csvfile:
           
           # create a dictionary
           data = {
-              "Identifier": row[0],
+              "Identifier": reader{idrow[0],
               "Name": row[1],
               "Application_Lifecycle_Stage": row[2],
               "SLA_Applications": row[3],

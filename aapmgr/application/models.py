@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class application(models.Model):
-    Identifier = models.CharField(max_length=255)
+    Identifier = models.CharField(max_length=255, primary_key=True)
     Name = models.CharField(max_length=255)
     Application_Lifecycle_Stage = models.CharField(max_length=255)
     SLA_Applications = models.CharField(max_length=255)
