@@ -75,6 +75,10 @@ with open(filename, newline='') as csvfile:
       print(row)
       # if the row is not empty
       if row:
+          # pass if the row is the header
+          if row[0] == "Identifier":
+              continue
+          
           # create a dictionary
           data = {
               "Identifier": row[0],
