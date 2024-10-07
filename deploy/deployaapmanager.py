@@ -34,10 +34,10 @@ def main():
         run_cmd("git checkout " + remote_branch_name)
         run_cmd("git pull")
         run_cmd("scp -r ./* " + remote_host + ":" + remote_dir)
-        run_cmd("ssh /opt/aapmanager/development/aapmgr/venv/bin/pip install -r /opt/aapmanager/development/aapmgr/requirements.txt")
-        run_cmd("ssh /opt/aapmanager/development/aapmgr/venv/bin/python /opt/aapmanager/development/aapmgr/manage.py migrate")
-        run_cmd("ssh /opt/aapmanager/development/aapmgr/venv/bin/python /opt/aapmanager/development/aapmgr/manage.py collectstatic --noinput")
-        run_cmd("ssh systemctl restart aapmanager")
+        run_cmd("ssh aapmanager /opt/aapmanager/development/aapmgr/venv/bin/pip install -r /opt/aapmanager/development/aapmgr/requirements.txt")
+        run_cmd("ssh aapmanager /opt/aapmanager/development/aapmgr/venv/bin/python /opt/aapmanager/development/aapmgr/manage.py migrate")
+        run_cmd("ssh aapmanager /opt/aapmanager/development/aapmgr/venv/bin/python /opt/aapmanager/development/aapmgr/manage.py collectstatic --noinput")
+        run_cmd("ssh aapmanager systemctl restart aapmanager")
     else:
         print(f"Branch {current_branch} has not changed")
     
