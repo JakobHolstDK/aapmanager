@@ -57,7 +57,7 @@ def main():
     # for each server in the data
     for server in data:
         # post the data to the server
-        response = requests.post("http://localhost:9990/serverinfo/assets/", data=server)
+        response = requests.post("http://aapmanager.dsv.com:9990/serverinfo/api/assets/", data=server, verify=False)
         print(response.text)
         time.sleep(1)
     return
