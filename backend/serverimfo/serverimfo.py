@@ -54,29 +54,31 @@ def main():
     data = subprocess.run(["serverinfo.py"], stdout=subprocess.PIPE)
     # convert the data to json
     data = json.loads(data.stdout)
-    digesteddata =     {
-    "host_name": data["Host Name"],
-    "computer_name": data["Computer Name"],
-    "environment": data["Environment"],
-    "data_center_location": data["DataCenterLocation"],
-    "vmware_datacenter": data["VMWare Datacenter"],
-    "function": data["Function"],
-    "technical_contacts": data["Technical Contacts"],
-    "country": data["Country"],
-    "support_hours": data["Support Hours"],
-    "guard": data["Guard"],
-    "application_id": data["Application ID"],
-    "application_name": data["Application Name"],
-    "a_number": data["A-Number"],
-    "deploy_date": data["DeployDate"],
-    "asset_status": data["Asset Status"]
-    }
+    
     # for each server in the data
-    for server in digesteddata:
+    for server in data:
         print(server)
+        digested_server = {
+            "hostname": server["Host Name"],
+            "computername": server["Computer Name"],
+            "environment": server["Environment"],
+            "datacenterlocation": server["DataCenterLocation"],
+            "vmwaredatacenter": server["VMWare Datacenter"],
+            "function": server["Function"],
+            "technicalcontacts": server["Technical Contacts"],
+            "country": server["Country"],
+            "supporthours": server["Support Hours"],
+            "guard": server["Guard"],
+            "applicationid": server["Application ID"],
+            "applicationname": server["Application Name"],
+            "anumber": server["A-Number"],
+            "deploydate": server["DeployDate"],
+            "assetstatus": server["Asset Status"]
+        }
+
 
         # post the data to the server
-        response = requests.post("http://aapmanager.dsv.com:9990/serverinfo/api/assets/", data=server, verify=False)
+        response = requests.post("http://aapmanager.dsv.com:9990/serverinfo/api/assets/", data=digested_server, verify=False)
         print(response.text)
         time.sleep(1)
     return
