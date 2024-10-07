@@ -84,7 +84,6 @@ class server(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
     appid = models.ForeignKey(appid, on_delete=models.CASCADE)
-    organization = models.ForeignKey(organization, on_delete=models.CASCADE)
     environment = models.ForeignKey(environment, on_delete=models.CASCADE)
     region = models.ForeignKey(region, on_delete=models.CASCADE)
     zone = models.ForeignKey(zone, on_delete=models.CASCADE)
