@@ -145,6 +145,6 @@ with open(filename, newline='') as csvfile:
               print("Error sending data")
               print(response.text)
               print(response.status_code)
-          time.sleep(0.1)
+          time.sleep(0.05)
 
 
