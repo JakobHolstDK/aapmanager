@@ -216,11 +216,25 @@ def main():
                     "configitems": {}
                 }
                 create_single_application(data)
-                print("Application created")
-                print("------------------------------")
                 appids = get_Appids()
             
-            print("myapid: %-20s : %s" % (myappid , appidid))
+            # We now know the appid
+            pprint.pprint(active_server)
+            print("------------------------------")
+
+
+
+            myserverdata = {
+                "name": active_server,
+                "description": "Auotmatically created",
+                "configitems": {},
+                "appid": appidid,
+
+
+            }
+
+
+
 
         else:
             print("Server found in redis")
