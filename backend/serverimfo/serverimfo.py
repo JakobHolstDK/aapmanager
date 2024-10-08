@@ -174,16 +174,17 @@ def main():
             else:
                 pass
             
-
         if answer_section(diginfo) != "" and answer_section(diginfo) != None:
+            #{"detected":["Date has wrong format. Use one of these formats instead: YYYY-MM-DD."],"updated":["Date has wrong format. Use one of these formats instead: YYYY-MM-DD."],"os":["
+            detected = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             myserverdata = {
             "hostname": server["Host Name"],
             "cname": "in progress",
             "description": "in progress",
             "environment": "unknown",
-            "detected": "Unknown",
-            "updated": "Unknown",
-            "status": "",
+            "detected": detected,
+            "updated": detected,
+            "status": "unknown",
             "os": "",
             "os_version": "",
             "os_arch": "",
