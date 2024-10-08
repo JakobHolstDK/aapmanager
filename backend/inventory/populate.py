@@ -264,8 +264,8 @@ def main():
             print(response.status_code)
             print(response.text)
             print("------------------------------")
-            r.set(f"{redis_prefix}:{active_server}", json.dumps(active_servers[active_server]), ex=36000)
-            
+            #r.set(f"{redis_prefix}:{active_server}", json.dumps(active_servers[active_server]), ex=36000)
+
 
 
 
