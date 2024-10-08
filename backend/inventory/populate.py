@@ -235,12 +235,12 @@ def main():
             # We now know the appid
             pprint.pprint(active_servers[active_server])
 
-            print("------------------------------")
-            print(countries)
-            print(active_servers[active_server]['country'])
-            print("------------------------------")
-            region =regions[active_servers[active_server]['country']]
-            print("Region: ", region)
+            mycontry = active_servers[active_server]['country']
+            myregion = countries[mycontry]['region']
+            print(myregion)
+            print("-------------------------------")
+
+
 
 
 
