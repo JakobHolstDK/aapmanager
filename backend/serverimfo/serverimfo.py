@@ -153,7 +153,7 @@ def main():
         
 
     # g if answer section is populated for each server
-        if is_answer_section_populated(mydig):
+        if is_answer_section_populated(diginfo):
             print(f"Answer section is populated for {server['Host Name']}")
 
             resdiskey = redis_prefix + ":netcat:" + server["Host Name"]
