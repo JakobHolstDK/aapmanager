@@ -234,15 +234,18 @@ def main():
             
             # We now know the appid
             pprint.pprint(active_servers[active_server])
-
-            mycontry = active_servers[active_server]['country']
-            myregion = countries[mycontry]
+            try:
+                mycontry = active_servers[active_server]['country']
+                myregion = countries[mycontry]
+            except KeyError:
+                myregion = countries['unknown']
+                mycontry = "unknown"
             pprint.pprint(environments)
             try:
                 myenvironment = environments[active_servers[active_server]['environment'].lower()]
             except KeyError:
                 myenvironment = environments['unknown']
-                
+
 
 
 
