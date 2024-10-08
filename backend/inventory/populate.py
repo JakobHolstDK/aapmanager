@@ -236,6 +236,15 @@ def main():
             
             # We now know the appid
             pprint.pprint(active_servers[active_server])
+
+            command = ["ansible-inventory",  "-i", "/opt/common/common.inventory",  "--host", active_servers[active_server]['host_name'] ]
+            data = subprocess.run(command, stdout=subprocess.PIPE)
+            data = json.loads(data.stdout)
+            print(data)
+            print("------------------------------")
+            
+
+
             myregion = regions['unknown']
             mycontry = "unknown"
             try:
