@@ -171,16 +171,12 @@ def main():
     print("we have disposed servers: ", len(disposed_servers ))
 
     for active_server in active_servers:
-        print(active_server)
-        print(active_servers[active_server])
-        print("------------------------------")
-
         get = r.get(f"{redis_prefix}:{active_server}")
         if get == None:
             print("Server not found in redis")
             print("------------------------------")
             myappid = "AAP-%s" % active_servers[active_server]['application_id']
-            print(myappid)
+            print(appids[myappid])
             print("------------------------------")
 
         else:
