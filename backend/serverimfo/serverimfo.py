@@ -175,8 +175,8 @@ def main():
                 pass
             
 
-
-        myserverdata = {
+        if answer_section(diginfo) != "" and answer_section(diginfo) != None:
+            myserverdata = {
             "hostname": server["Host Name"],
             "cname": "in progress",
             "description": "in progress",
@@ -194,27 +194,27 @@ def main():
             "os_lastmodified": "",
             "os_eol_state": "",
             "appid": server["Application ID"],
-    }
+            }
             
-        rediskey = redis_prefix + ":serverdate" + server["Host Name"]
-        try:
-            serverdata = redis_client.get(rediskey).decode("utf-8")
-        except Exception as e:
-            serverdata = None
+            rediskey = redis_prefix + ":serverdate" + server["Host Name"]
+            try:
+                serverdata = redis_client.get(rediskey).decode("utf-8")
+            except Exception as e:
+                serverdata = None
     
-        if serverdata == None:
-            print("Sending data for serverdata")
-            response = requests.post("http://aapmanager.dsv.com:9990/serverinfo/api/servers/", data=myserverdata, verify=False)
-            print(response.status_code)
-            print(response.text)
-            print("------------------------------------------------")
-            if response.status_code == 201 or response.status_code == 400:
-                pass
+            if serverdata == None:
+                print("Sending data for serverdata")
+                response = requests.post("http://aapmanager.dsv.com:9990/serverinfo/api/servers/", data=myserverdata, verify=False)
+                print(response.status_code)
+                print(response.text)
+                print("------------------------------------------------")
+                if response.status_code == 201 or response.status_code == 400:
+                    pass
+                else:
+                    print("Error sending data")
+                redis_client.set(rediskey, json.dumps(myserverdata), ex=36000)
             else:
-                print("Error sending data")
-            redis_client.set(rediskey, json.dumps(myserverdata), ex=36000)
-        else:
-            pass
+                pass
     
     return
 
