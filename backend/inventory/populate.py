@@ -250,6 +250,22 @@ def main():
                 myenvironment = environments['unknown']
 
 
+            configitems = {
+                "host_name": active_servers[active_server]['host_name'],
+                "computer_name": active_servers[active_server]['computer_name'],
+                "data_center_location": active_servers[active_server]['data_center_location'],
+                "vmware_datacenter": active_servers[active_server]['vmware_datacenter'],
+                "function": active_servers[active_server]['function'],
+                "technical_contacts": active_servers[active_server]['technical_contacts'],
+                "country": mycontry,
+                "support_hours": active_servers[active_server]['support_hours'],
+                "guard": active_servers[active_server]['guard'],
+                "application_id": active_servers[active_server]['application_id'],
+                "application_name": active_servers[active_server]['application_name'],
+                "a_number": active_servers[active_server]['a_number'],
+                "deploy_date": active_servers[active_server]['deploy_date'],
+                "asset_status": active_servers[active_server]['asset_status']
+            }
 
 
             myserverdata = {
@@ -258,7 +274,10 @@ def main():
                 "configitems": {},
                 "appid": appidid,
                 "environment": myenvironment,
-                "region": myregion
+                "region": myregion,
+                "zone": "unknown",
+                "configitems": configitems
+
             }
             response = requests.post("http://aapmanager.dsv.com:9990/inventory/api/servers/", json=myserverdata)
             print(response.status_code)
