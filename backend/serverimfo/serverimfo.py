@@ -138,7 +138,11 @@ def main():
             print(serverupdate)
             print("------------------------------")
         rediskey = redis_prefix + ":dig:" + server["Host Name"]
-        diginfo = redis_client.get(rediskey).decode("utf-8")
+        try:
+            diginfo = redis_client.get(rediskey).decode("utf-8")
+        except Exception as e:
+            diginfo = None
+
         if diginfo == None:
             print(f"Server {server['Host Name']} not in the dig database")
             print("--------------Dig------------------")
