@@ -194,13 +194,13 @@ def main():
             myappid = "AAP-%s" % active_servers[active_server]['application_id']
             appoidid = None
             pprint.pprint(appids)
-            
+
             try:
-                appidid = appids[myappid]
+                appidid = appids['APP-6125']
             except KeyError:
                 pass
             
-            print("myapid: %-20s : %s" % (myappid , appoidid))
+            print("myapid: %-20s : %s" % (myappid , appidid))
 
         else:
             print("Server found in redis")
