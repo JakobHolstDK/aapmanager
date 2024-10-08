@@ -145,7 +145,7 @@ def main():
                 print("Error sending data")
 
             time.sleep(0.02)
-            redis_client.set(f"{redis_prefix}:{server['Host Name']}", json.dumps(digested_server), ex=3600)
+            redis_client.set(f"{redis_prefix}:{server['Host Name']}", json.dumps(digested_server), ex=36000)
         else:
             pass
         rediskey = redis_prefix + ":dig:" + server["Host Name"]
@@ -157,7 +157,7 @@ def main():
         if diginfo == None and server["Host Name"] not in ["local.dev", "localhost"]:
 
             mydig = dnsdig(server["Host Name"])
-            redis_client.set(rediskey, mydig, ex=3600)
+            redis_client.set(rediskey, mydig, ex=36000)
 
         else:
             pass
@@ -170,9 +170,48 @@ def main():
             netcatinfo = redis_client.get(resdiskey)
             if netcatinfo == None:
                 netcat = os.system(f"timeout 1 nc -zv {server['Host Name']} 22 2>/dev/null" )
-                redis_client.set(resdiskey, netcat, ex=3600)
+                redis_client.set(resdiskey, netcat, ex=360000)
             else:
                 pass
+            
+
+
+        myserverdata = {
+            "hostname": server["Host Name"],
+            "cname": "in progress",
+            "description": "in progress",
+            "environment": "Unknown",
+            "detected": "Unknown",
+            "updated": "Unknown",
+            "status": "",
+            "os": "",
+            "os_version": "",
+            "os_arch": "",
+            "os_lastboot": "",
+            "os_lastpatch": "",
+            "os_uptime": "",
+            "os_installed": "",
+            "os_lastmodified": "",
+            "os_eol_state": "",
+            "appid": server["Application ID"],
+    }
+            
+        rediskey = redis_prefix + ":server:" + server["Host Name"]
+        try:
+            serverinfo = redis_client.get(rediskey).decode("utf-8")
+        except Exception as e:
+            serverinfo = None
+    
+        if serverinfo == None:
+            response = requests.post("http://aapmanager.dsv.com:9990/serverinfo/api/servers/", data=myserverdata, verify=False)
+            if response.status_code == 201 or response.status_code == 400:
+                pass
+            else:
+                print("Error sending data")
+            redis_client.set(rediskey, json.dumps(myserverdata), ex=36000)
+        else:
+            pass
+    
     return
 
 if __name__ == "__main__":
