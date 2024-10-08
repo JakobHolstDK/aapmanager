@@ -179,7 +179,7 @@ def main():
         if get == None:
             print("Server not found in redis")
             print("------------------------------")
-            myappid = f"AAP-{active_server['appid']}"
+            myappid = "AAP-%s" % active_servers[active_server]['application_id']
             print(myappid)
             print("------------------------------")
 
