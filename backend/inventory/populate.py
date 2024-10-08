@@ -42,6 +42,16 @@ def update_applications():
             print(f"Application {application['Name']} is already retired")
             time.sleep(0.1)
 
+def get_projects():
+    url = "http://aapmanager.dsv.com:9990/inventory/api/projects/"
+    response = requests.get(url)
+    data = response.json()
+    projects = {}
+    for project in data:
+        if project["Application_Lifecycle_Stage"] == "Retired":
+            projects[project['id']] = project['name']
+    return projects
+
     
 def update_servers():
     data = subprocess.run(["serverinfo.py"], stdout=subprocess.PIPE)
@@ -51,14 +61,29 @@ def update_servers():
     for server in data:
         print(server)
         print("------------------------------")
+        payload = { 
+            {
+                "name": "test",
+                "description": "",
+                "configitems": null,
+                "appid": null,
+                "environment": null,
+                "region": null,
+                "zone": null,
+                "serverrole": []
+            }
+}
+            
 
 
 
 
 def main():
+    projects = get_projects()
+    print(projects)
     
     #update_applications()
-    update_servers()
+    #update_servers()
     return
 
 
