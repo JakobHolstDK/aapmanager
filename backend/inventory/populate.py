@@ -241,8 +241,10 @@ def main():
                 myregion = countries['unknown']
                 mycontry = "unknown"
             pprint.pprint(environments)
+            
             try:
-                myenvironment = environments[active_servers[active_server]['environment'].lower()]
+                lowenvironment = active_servers[active_server]['environment'].lower()
+                myenvironment = environments[lowenvironment]
             except KeyError:
                 myenvironment = environments['unknown']
 
