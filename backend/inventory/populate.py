@@ -236,7 +236,7 @@ def main():
             
             # We now know the appid
             pprint.pprint(active_servers[active_server])
-            myregion = countries['unknown']
+            myregion = regions['unknown']
             mycontry = "unknown"
             try:
                 if active_servers[active_server]['environment'] is not None:
