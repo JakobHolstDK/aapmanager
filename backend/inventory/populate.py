@@ -237,6 +237,7 @@ def main():
 
             print("------------------------------")
             print(countries)
+            print(active_servers[active_server]['country'])
             print("------------------------------")
             region =regions[active_servers[active_server]['country']]
             print("Region: ", region)
