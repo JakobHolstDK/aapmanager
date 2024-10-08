@@ -219,7 +219,8 @@ def main():
                 appids = get_Appids()
             
             # We now know the appid
-            pprint.pprint(active_server)
+            pprint.pprint(active_servers[active_server])
+
             print("------------------------------")
 
 
