@@ -194,7 +194,7 @@ def main():
             myappid = "AAP-%s" % active_servers[active_server]['application_id']
             appoidid = None
             try:
-                appidid = appids['APP-6125']
+                appidid = appids[myappid]
             except KeyError:
                 pass
             
