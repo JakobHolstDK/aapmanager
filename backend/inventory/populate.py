@@ -193,8 +193,6 @@ def main():
         if get == None:
             myappid = "AAP-%s" % active_servers[active_server]['application_id']
             appoidid = None
-            pprint.pprint(appids)
-
             try:
                 appidid = appids['APP-6125']
             except KeyError:
