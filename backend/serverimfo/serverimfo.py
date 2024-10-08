@@ -79,14 +79,13 @@ def main():
         # post the data to the server
         response = requests.post("http://aapmanager.dsv.com:9990/serverinfo/api/assets/", data=digested_server, verify=False)
         if response.status_code == 201 or response.status_code == 400:
-            
-            print("Data sent successfully or already exists")
+           pass 
         else:
             print("Error sending data")
             print(response.text)
             print(response.status_code)
 
-        time.sleep(0.1)
+        time.sleep(0.02)
     return
 
 if __name__ == "__main__":
