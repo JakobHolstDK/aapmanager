@@ -13,6 +13,20 @@ def dnsdig(hostname):
     mydig = subprocess.run(["dig", hostname], stdout=subprocess.PIPE)
     dig = mydig.stdout.decode("utf-8")
     return dig
+def answer_section(dns_response):
+    if dns_response == None:
+        return None
+    lines = dns_response.splitlines()
+    answer_section = False
+    answer = ""
+    for line in lines:
+        if "ANSWER SECTION" in line:
+            answer_section = True
+            continue
+        if answer_section and line.strip():
+            answer += line + "\n"
+    return answer
+
 
 def is_answer_section_populated(dns_response):
     if dns_response == None:
@@ -149,7 +163,7 @@ def main():
             pass
 
         
-
+        print(answer_section(diginfo))
     # g if answer section is populated for each server
         if is_answer_section_populated(diginfo) and diginfo != None:
             resdiskey = redis_prefix + ":netcat:" + server["Host Name"]
