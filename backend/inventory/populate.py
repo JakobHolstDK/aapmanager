@@ -192,6 +192,8 @@ def main():
     print("we have disposed servers: ", len(disposed_servers ))
 
     for active_server in active_servers:
+        if active_servers[active_server]['application_id'] != "6661":
+            continue
         """
         {
           'host_name': 'I16518.DSV.COM',
@@ -234,12 +236,8 @@ def main():
             
             # We now know the appid
             pprint.pprint(active_servers[active_server])
-            try:
-                mycontry = active_servers[active_server]['country']
-                myregion = countries[mycontry]
-            except KeyError:
-                myregion = countries['unknown']
-                mycontry = "unknown"
+            myregion = countries['unknown']
+            mycontry = "unknown"
             try:
                 if active_servers[active_server]['environment'] is not None:
                     lowenvironment = active_servers[active_server]['environment'].lower()
