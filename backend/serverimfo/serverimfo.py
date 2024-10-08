@@ -138,6 +138,8 @@ def main():
         except Exception as e:
             diginfo = None
 
+        print(diginfo)
+
         if diginfo == None and server["Host Name"] not in ["local.dev", "localhost"]:
 
             mydig = dnsdig(server["Host Name"])
