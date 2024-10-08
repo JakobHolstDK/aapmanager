@@ -170,6 +170,8 @@ def main():
     regions = get_regions()
     zones = get_zones()
     serverroles = get_serverroles()
+    countries = get_contries()
+
 
     active_servers, disposed_servers = get_serverinfo()
 
@@ -183,6 +185,8 @@ def main():
     print("we have regions: ", len(regions))
     print("we have zones: ", len(zones))
     print("we have serverroles: ", len(serverroles))
+    print("we have countries: ", len(countries))
+    
 
     print("we have active servers: ", len(active_servers))
     print("we have disposed servers: ", len(disposed_servers ))
@@ -234,7 +238,7 @@ def main():
             print("------------------------------")
             region =regions[active_servers[active_server]['country']]
             print("Region: ", region)
-            
+
 
 
 
