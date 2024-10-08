@@ -1,6 +1,6 @@
 # command ; serverinfo.py  |jq '.[] | select(."Asset Status" != "Disposed") list all servers that are not disposed
 # curl curl http://aapmanager.dsv.com:9990/application/api/applications/ | jq '.[] | select (.Application_Lifecycle_Stage != "Retired" )'
-
+import pprint
 import requests
 import subprocess
 import json
@@ -193,10 +193,13 @@ def main():
         if get == None:
             myappid = "AAP-%s" % active_servers[active_server]['application_id']
             appoidid = None
+            pprint.pprint(appids)
+            
             try:
                 appidid = appids[myappid]
             except KeyError:
                 pass
+            
             print("myapid: %-20s : %s" % (myappid , appoidid))
 
         else:
