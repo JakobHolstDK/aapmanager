@@ -223,13 +223,15 @@ def main():
 
             print("------------------------------")
 
-
+            
 
             myserverdata = {
                 "name": active_server,
                 "description": "Auotmatically created",
                 "configitems": {},
                 "appid": appidid,
+                "environment": environments[active_servers[active_server]['environment']],
+
 
 
             }
