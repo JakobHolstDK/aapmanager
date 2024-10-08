@@ -205,6 +205,9 @@ def main():
         if serverdata == None:
             print("Sending data for serverdata")
             response = requests.post("http://aapmanager.dsv.com:9990/serverinfo/api/servers/", data=myserverdata, verify=False)
+            print(response.status_code)
+            print(response.text)
+            print("------------------------------------------------")
             if response.status_code == 201 or response.status_code == 400:
                 pass
             else:
