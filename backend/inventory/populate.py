@@ -59,6 +59,16 @@ def update_applications():
             print(f"Application {application['Name']} is already retired")
             time.sleep(0.1)
 
+def get_contries():
+    url = "http://aapmanager.dsv.com:9990/inventory/api/countries/"
+    response = requests.get(url)
+    data = response.json()
+    countries = {}
+    for country in data:
+        countries[country['name']] = country['id']
+    return countries
+
+
 def get_projects():
     url = "http://aapmanager.dsv.com:9990/inventory/api/projects/"
     response = requests.get(url)
@@ -222,8 +232,11 @@ def main():
             pprint.pprint(active_servers[active_server])
 
             print("------------------------------")
-
+            region =regions[active_servers[active_server]['country']]
+            print("Region: ", region)
             
+
+
 
             myserverdata = {
                 "name": active_server,
