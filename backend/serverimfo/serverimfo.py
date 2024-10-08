@@ -1,5 +1,5 @@
 
-
+import pprint
 import requests
 import subprocess
 import json
@@ -163,7 +163,7 @@ def main():
             pass
 
         
-        print(answer_section(diginfo))
+        pprint.pprint(answer_section(diginfo))
     # g if answer section is populated for each server
         if answer_section is not None:
             resdiskey = redis_prefix + ":netcat:" + server["Host Name"]
