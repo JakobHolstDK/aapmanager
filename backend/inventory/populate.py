@@ -48,8 +48,7 @@ def get_projects():
     data = response.json()
     projects = {}
     for project in data:
-        if project["Application_Lifecycle_Stage"] == "Retired":
-            projects[project['id']] = project['name']
+        projects[project['id']] = project['name']
     return projects
 
     
