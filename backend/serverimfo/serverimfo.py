@@ -98,11 +98,7 @@ def main():
     for server in data:
         try:
             serverupdate = redis_client.get(f"{redis_prefix}:{server['Host Name']}")
-            print(serverupdate)
-
-
         except Exception as e:
-            print(e)
             serverupdate = None
 
         if serverupdate == None:
