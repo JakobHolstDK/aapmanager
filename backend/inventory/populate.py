@@ -51,6 +51,52 @@ def get_projects():
         projects[project['id']] = project['name']
     return projects
 
+def get_Appids():
+    url = "http://aapmanager.dsv.com:9990/inventory/api/appids/"
+    response = requests.get(url)
+    data = response.json()
+    appids = {}
+    for appid in data:
+        appids[appid['id']] = appid['appid']
+    return appids
+
+def get_environments():
+    url = "http://aapmanager.dsv.com:9990/inventory/api/environments/"
+    response = requests.get(url)
+    data = response.json()
+    environments = {}
+    for environment in data:
+        environments[environment['id']] = environment['name']
+    return environments
+
+def get_regions():
+    url = "http://aapmanager.dsv.com:9990/inventory/api/regions/"
+    response = requests.get(url)
+    data = response.json()
+    regions = {}
+    for region in data:
+        regions[region['id']] = region['name']
+    return regions
+
+def get_zones():
+    url = "http://aapmanager.dsv.com:9990/inventory/api/zones/"
+    response = requests.get(url)
+    data = response.json()
+    zones = {}
+    for zone in data:
+        zones[zone['id']] = zone['name']
+    return zones
+
+def get_serverroles():
+    url = "http://aapmanager.dsv.com:9990/inventory/api/serverroles/"
+    response = requests.get(url)
+    data = response.json()
+    serverroles = {}
+    for serverrole in data:
+        serverroles[serverrole['id']] = serverrole['name']
+    return serverroles
+
+
     
 def update_servers():
     data = subprocess.run(["serverinfo.py"], stdout=subprocess.PIPE)
@@ -80,6 +126,17 @@ def update_servers():
 def main():
     projects = get_projects()
     print(projects)
+    appids = get_Appids()
+    print(appids)
+    environments = get_environments()
+    print(environments)
+    regions = get_regions()
+    print(regions)
+    zones = get_zones()
+    print(zones)
+    serverroles = get_serverroles()
+    print(serverroles)
+    
     
     #update_applications()
     #update_servers()
