@@ -266,6 +266,11 @@ def main():
                 "deploy_date": active_servers[active_server]['deploy_date'],
                 "asset_status": active_servers[active_server]['asset_status']
             }
+            try:
+                myzone = active_servers[active_server]['zone']
+                myzone = zones[myzone]
+            except KeyError:
+                myzone = zones['unknown']
 
 
             myserverdata = {
@@ -275,7 +280,7 @@ def main():
                 "appid": appidid,
                 "environment": myenvironment,
                 "region": myregion,
-                "zone": "unknown",
+                "zone": myzone,
                 "configitems": configitems
 
             }
