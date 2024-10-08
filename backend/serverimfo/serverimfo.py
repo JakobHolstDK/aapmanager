@@ -164,7 +164,7 @@ def main():
 
         
     # g if answer section 
-        if answer_section(diginfo) is not "":
+        if answer_section(diginfo) != "":
             pprint.pprint(answer_section(diginfo))
             resdiskey = redis_prefix + ":netcat:" + server["Host Name"]
             netcatinfo = redis_client.get(resdiskey)
