@@ -196,13 +196,13 @@ def main():
             "appid": server["Application ID"],
     }
             
-        rediskey = redis_prefix + ":server:" + server["Host Name"]
+        rediskey = redis_prefix + ":serverdate" + server["Host Name"]
         try:
-            serverinfo = redis_client.get(rediskey).decode("utf-8")
+            serverdata = redis_client.get(rediskey).decode("utf-8")
         except Exception as e:
-            serverinfo = None
+            serverdata = None
     
-        if serverinfo == None:
+        if serverdata == None:
             response = requests.post("http://aapmanager.dsv.com:9990/serverinfo/api/servers/", data=myserverdata, verify=False)
             if response.status_code == 201 or response.status_code == 400:
                 pass
