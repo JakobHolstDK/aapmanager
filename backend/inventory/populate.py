@@ -6,6 +6,16 @@ import subprocess
 import json
 import time
 import os
+import redis
+
+redis_host = os.getenv("REDIS_HOST", "localhost")
+redis_port = os.getenv("REDIS_PORT", 6379)
+redis_db = os.getenv("REDIS_DB", 0)
+redis_password = os.getenv("REDIS_PASSWORD", None)
+redis_client = redis.Redis(host=redis_host, port=redis_port, db=redis_db, password=redis_password)
+redis_prefix = "inventory"
+
+
 
 
 def update_applications():
@@ -146,6 +156,9 @@ def main():
 
     active_servers, disposed_servers = get_serverinfo()
 
+    r = redis.Redis(host=redis_host, port=redis_port, db=redis_db, password=redis_password)
+
+
 
     print("we have projects: ", len(projects))
     print("we have appids: ", len(appids))
@@ -161,7 +174,20 @@ def main():
         print(active_server)
         print(active_servers[active_server])
         print("------------------------------")
-        
+
+        get = r.get(f"{redis_prefix}:{active_server}")
+        if get == None:
+            print("Server not found in redis")
+            print("------------------------------")
+        else:
+            print("Server found in redis")
+            print("------------------------------")
+            
+
+
+
+
+
 
     
     #update_applications()
