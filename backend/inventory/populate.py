@@ -186,7 +186,7 @@ def main():
     print("we have zones: ", len(zones))
     print("we have serverroles: ", len(serverroles))
     print("we have countries: ", len(countries))
-    
+
 
     print("we have active servers: ", len(active_servers))
     print("we have disposed servers: ", len(disposed_servers ))
@@ -235,6 +235,8 @@ def main():
             # We now know the appid
             pprint.pprint(active_servers[active_server])
 
+            print("------------------------------")
+            print(countries)
             print("------------------------------")
             region =regions[active_servers[active_server]['country']]
             print("Region: ", region)
