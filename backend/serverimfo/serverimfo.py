@@ -180,7 +180,7 @@ def main():
             "hostname": server["Host Name"],
             "cname": "in progress",
             "description": "in progress",
-            "environment": "Unknown",
+            "environment": "unknown",
             "detected": "Unknown",
             "updated": "Unknown",
             "status": "",
