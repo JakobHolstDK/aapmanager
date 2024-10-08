@@ -7,6 +7,13 @@ import time
 import redis
 import os
 
+import pydig
+
+def dnsdig(hostname):
+    dig = pydig.query(hostname, "A")
+    return dig
+
+
 # the command serverinfo.py generates the following output:
 """
 [
@@ -70,7 +77,7 @@ def main():
         try:
             serverupdate = redis_client.get(f"{redis_prefix}:{server['Host Name']}")
             print(serverupdate)
-            
+
 
         except Exception as e:
             print(e)
@@ -111,6 +118,36 @@ def main():
             print(f"Server {server['Host Name']} already in the database")
             print(serverupdate)
             print("------------------------------")
+        rediskey = redis_prefix + ":dig:" + server["Host Name"]
+        diginfo = redis_client.get(rediskey)
+        if diginfo == None:
+            print(f"Server {server['Host Name']} not in the dig database")
+            print("--------------Dig------------------")
+            mydig = dnsdig(server["Host Name"])
+            print(mydig)
+            redis_client.set(rediskey, mydig, ex=3600)
+
+        else:
+            print(f"Server {server['Host Name']} already in the dig database")
+            print(diginfo)
+            print("--------------Dig------------------")
+
+        
+
+    # g 
+        resdiskey = redis_prefix + ":netcat:" + server["Host Name"]
+        netcatinfo = redis_client.get(resdiskey)
+        if netcatinfo == None:
+            print(f"Server {server['Host Name']} not in the netcat database")
+            print("-------------Netcat-----------------")
+            netcat = os.system(f"nc -zv {server['Host Name']} 22")
+            print(netcat)
+            redis_client.set(resdiskey, netcat, ex=3600)
+            
+        else:
+            print(f"Server {server['Host Name']} already in the netcat database")
+            print(netcatinfo)
+            print("--------------netcat----------------")
     return
 
 if __name__ == "__main__":
