@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import server, zone, region, appid, environment, serverrole,  organization, project
+from .models import server, zone, region, appid, environment, serverrole,  organization, project, country
 
 # Create your serializers here.where all tables are joined
 class OrganizationSerializer(serializers.ModelSerializer):
@@ -41,5 +41,11 @@ class ServerroleSerializer(serializers.ModelSerializer):
     class Meta:
         model = serverrole
         fields = '__all__'
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = country
+        fields = '__all__'
+
 
 
