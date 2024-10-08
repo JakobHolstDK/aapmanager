@@ -240,8 +240,6 @@ def main():
             except KeyError:
                 myregion = countries['unknown']
                 mycontry = "unknown"
-            pprint.pprint(environments)
-            
             try:
                 if active_servers[active_server]['environment'] is not None:
                     lowenvironment = active_servers[active_server]['environment'].lower()
