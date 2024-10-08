@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status, viewsets
 from django.views.generic import ListView
 from rest_framework.decorators import api_view
-from .models import server, zone, region, appid, environment, serverrole
-from .serializers import ServerSerializer, ZoneSerializer, RegionSerializer, AppidSerializer, EnvironmentSerializer, ServerroleSerializer
+from .models import server, zone, region, appid, environment, serverrole, country
+from .serializers import ServerSerializer, ZoneSerializer, RegionSerializer, AppidSerializer, EnvironmentSerializer, ServerroleSerializer, CountrySerializer
 from .models import organization, project
 from .serializers import OrganizationSerializer, ProjectSerializer
 from rest_framework import status
