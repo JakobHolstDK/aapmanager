@@ -15,6 +15,13 @@ redis_password = os.getenv("REDIS_PASSWORD", None)
 redis_client = redis.Redis(host=redis_host, port=redis_port, db=redis_db, password=redis_password)
 redis_prefix = "inventory"
 
+def create_single_application(data):
+    url = "http://aapmanager.dsv.com:9990/inventory/api/appids/"
+    headers = {
+        'Content-Type': 'application/json',
+    }
+    response = requests.post(url, headers=headers, data=json.dumps(data), verify=False)
+    return response
 
 
 
@@ -197,6 +204,21 @@ def main():
                 appidid = appids[myappid]
             except KeyError:
                 appidid = None
+            if appidid == None:
+                print("Application not found in redis")
+                print("------------------------------")
+                data = {
+                    "appid": myappid,
+                    "appname": "unknown",
+                    "appowner": "Unknown",
+                    "appcontact": "Unknown",
+                    "aapstatus": "Active",
+                    "configitems": {}
+                }
+                create_single_application(data)
+                print("Application created")
+                print("------------------------------")
+                appids = get_Appids()
             
             print("myapid: %-20s : %s" % (myappid , appidid))
 
