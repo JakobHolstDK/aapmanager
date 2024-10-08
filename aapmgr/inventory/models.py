@@ -66,6 +66,8 @@ class zone(models.Model):
     zonechoices = (
         ('dmz', 'DMZ'),
         ('cdc', 'core'),
+        ('unknown', 'Unknown')
+
     ) 
     name = models.CharField(max_length=255, choices=zonechoices,    unique=True)
     description = models.TextField(blank=True, null=True)
