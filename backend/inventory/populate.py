@@ -171,12 +171,37 @@ def main():
     print("we have disposed servers: ", len(disposed_servers ))
 
     for active_server in active_servers:
+        """
+        {
+          'host_name': 'I16518.DSV.COM',
+          'computer_name': 'I16518', 
+          'environment': 'Development', 
+          'data_center_location': None, 
+          'vmware_datacenter': 'DKTAADC03-02', 
+          'function': 'CW Template Tool INT', 
+          'technical_contacts': 'Jos.Janssen', 
+          'country': 'Denmark', 
+          'support_hours': '8-17', 
+          'guard': 'IT-SOL Support', 
+          'application_id': '3327', 
+          'application_name': 'CargoWrite WMS Template Tool', 
+          'a_number': '', 
+          'deploy_date': None, 'asset_status': 'Deployed'}
+        """
+
         get = r.get(f"{redis_prefix}:{active_server}")
         if get == None:
             print("Server not found in redis")
             print("------------------------------")
             myappid = "AAP-%s" % active_servers[active_server]['application_id']
-            print(appids[myappid])
+            try:
+                print(appids[myappid])
+            except KeyError:
+                print("Application not found")
+                print("------------------------------")
+                continue
+
+            
             print("------------------------------")
 
         else:
