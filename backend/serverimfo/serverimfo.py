@@ -25,6 +25,8 @@ def answer_section(dns_response):
             continue
         if answer_section and line.strip():
             answer += line + "\n"
+        if "AUTHORITY SECTION" in line:
+            break
     return answer
 
 
