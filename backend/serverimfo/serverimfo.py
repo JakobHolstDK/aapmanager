@@ -23,10 +23,10 @@ def answer_section(dns_response):
         if "ANSWER SECTION" in line:
             answer_section = True
             continue
-        if answer_section and line.strip():
-            answer += line + "\n"
         if "AUTHORITY SECTION" in line:
             break
+        if answer_section and line.strip():
+            answer += line + "\n"
     return answer
 
 
