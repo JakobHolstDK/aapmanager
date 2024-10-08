@@ -179,10 +179,14 @@ def main():
         if get == None:
             print("Server not found in redis")
             print("------------------------------")
+            myappid = f"AAP-{active_server['appid']}"
+            print(myappid)
+            print("------------------------------")
+
         else:
             print("Server found in redis")
             print("------------------------------")
-            
+
 
 
 
