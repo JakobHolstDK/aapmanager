@@ -243,8 +243,11 @@ def main():
             pprint.pprint(environments)
             
             try:
-                lowenvironment = active_servers[active_server]['environment'].lower()
-                myenvironment = environments[lowenvironment]
+                if active_servers[active_server]['environment'] is not None:
+                    lowenvironment = active_servers[active_server]['environment'].lower()
+                    myenvironment = environments[lowenvironment]
+                else:
+                    myenvironment = environments['unknown']
             except KeyError:
                 myenvironment = environments['unknown']
 
