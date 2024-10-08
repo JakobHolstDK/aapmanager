@@ -4,10 +4,36 @@ import json
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Asset, Server
-from .serializers import AssetSerializer, ServerSerializer
+from .models import Asset, Server, appid
+from .serializers import AssetSerializer, ServerSerializer, AppidSerializer
 from django.shortcuts import render
 from django.views.generic import ListView
+
+class AppidViewSet(viewsets.ModelViewSet):
+    queryset = appid.objects.all()
+    serializer_class = AppidSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data, many=isinstance(request.data, list))
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+    def perform_create(self, serializer):
+        serializer.save()
+
+    def perform_update(self, serializer):
+        serializer.save()
+
+    def perform_destroy(self, instance):
+        instance.delete()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = AppidSerializer(queryset, many=True)
+        return Response(serializer.data)
+    
 
 class ServerViewSet(viewsets.ModelViewSet):
     queryset = Server.objects.all()
