@@ -3,11 +3,16 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import AssetViewSet, ServerViewSet, upload_json, asset_list, server_list, server_info
+from .views import AppidViewSet
+
 
 
 router = DefaultRouter()
 router.register(r'assets', AssetViewSet)
 router.register(r'servers', ServerViewSet)
+router.register(r'appids', AppidViewSet)
+
+
 
 urlpatterns = [
     path('api/', include(router.urls)),
