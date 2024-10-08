@@ -10,7 +10,10 @@ import os
 import pydig
 
 def dnsdig(hostname):
-    dig = pydig.query(hostname, "A")
+    mydig = subprocess.run(["dig", hostname], stdout=subprocess.PIPE)
+    dig = mydig.stdout.decode("utf-8")
+
+    
     return dig
 
 
@@ -143,7 +146,7 @@ def main():
             netcat = os.system(f"nc -zv {server['Host Name']} 22")
             print(netcat)
             redis_client.set(resdiskey, netcat, ex=3600)
-            
+
         else:
             print(f"Server {server['Host Name']} already in the netcat database")
             print(netcatinfo)
