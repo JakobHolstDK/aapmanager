@@ -239,7 +239,7 @@ def main():
             myregion = countries[mycontry]
             pprint.pprint(environments)
 
-            myenvironment = environments[active_servers[active_server]['environment']]
+            myenvironment = environments[active_servers[active_server]['environment'].lower()]
 
 
             myserverdata = {
