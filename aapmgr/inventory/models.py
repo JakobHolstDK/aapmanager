@@ -37,7 +37,8 @@ class environment(models.Model):
         ('test', 'Test'),
         ('production', 'Production'),
         ('qa', 'QA'),
-        ('preproduction', 'Pre-Production')
+        ('preproduction', 'Pre-Production'),
+        ('unknown', 'Unknown')
     )
 
     name = models.CharField(max_length=255, choices=environmentchoices, unique=True)
