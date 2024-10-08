@@ -174,45 +174,6 @@ def main():
             else:
                 pass
             
-        if answer_section(diginfo) != "" and answer_section(diginfo) != None:
-            #{"detected":["Date has wrong format. Use one of these formats instead: YYYY-MM-DD."],"updated":["Date has wrong format. Use one of these formats instead: YYYY-MM-DD."],"os":["
-            myserverdata = {
-            "hostname": server["Host Name"],
-            "cname": "in progress",
-            "description": "in progress",
-            "environment": "unknown",
-            "status": "unknown",
-            "os": "unknown",
-            "os_arch": "unknown",
-            "os_lastboot": "",
-            "os_lastpatch": "",
-            "os_uptime": "",
-            "os_installed": "",
-            "os_lastmodified": "",
-            "os_eol_state": "",
-            "appid": server["Application ID"],
-            }
-            
-            rediskey = redis_prefix + ":serverdate" + server["Host Name"]
-            try:
-                serverdata = redis_client.get(rediskey).decode("utf-8")
-            except Exception as e:
-                serverdata = None
-    
-            if serverdata == None:
-                print("Sending data for serverdata")
-                response = requests.post("http://aapmanager.dsv.com:9990/serverinfo/api/servers/", data=myserverdata, verify=False)
-                print(response.status_code)
-                print(response.text)
-                print("------------------------------------------------")
-                if response.status_code == 201 or response.status_code == 400:
-                    pass
-                else:
-                    print("Error sending data")
-                redis_client.set(rediskey, json.dumps(myserverdata), ex=36000)
-            else:
-                pass
-    
     return
 
 if __name__ == "__main__":
