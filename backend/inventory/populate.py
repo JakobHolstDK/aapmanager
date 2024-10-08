@@ -196,7 +196,7 @@ def main():
             try:
                 appidid = appids[myappid]
             except KeyError:
-                pass
+                appidid = None
             
             print("myapid: %-20s : %s" % (myappid , appidid))
 
