@@ -191,18 +191,13 @@ def main():
 
         get = r.get(f"{redis_prefix}:{active_server}")
         if get == None:
-            print("Server not found in redis")
-            print("------------------------------")
             myappid = "AAP-%s" % active_servers[active_server]['application_id']
+            appoidid = None
             try:
-                print(appids[myappid])
+                appidid = appids[myappid]
             except KeyError:
-                print("Application not found")
-                print("------------------------------")
-                continue
-
-            
-            print("------------------------------")
+                pass
+            print(appoidid)
 
         else:
             print("Server found in redis")
