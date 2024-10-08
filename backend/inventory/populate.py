@@ -96,6 +96,19 @@ def get_serverroles():
         serverroles[serverrole['name']] = serverrole['id']
     return serverroles
 
+def get_serverinfo():
+    url = "http://aapmanager:9990/serverinfo/api/assets/"
+    response = requests.get(url)
+    data = response.json()
+    active_servers = {}
+    disposed_servers = {}
+    for server in data:
+        if server['assetstatus'] != "Disposed":
+            active_servers[server['hostname']] = server
+        else:
+            disposed_servers[server['hostname']] = server
+    return active_servers, disposed_servers
+
 
     
 def update_servers():
@@ -125,17 +138,22 @@ def update_servers():
 
 def main():
     projects = get_projects()
-    print(projects)
     appids = get_Appids()
-    print(appids)
     environments = get_environments()
-    print(environments)
     regions = get_regions()
-    print(regions)
     zones = get_zones()
-    print(zones)
     serverroles = get_serverroles()
-    print(serverroles)
+
+    active_servers, disposed_servers = get_serverinfo()
+    print("we have projects: ", len(projects))
+    print("we have appids: ", len(appids))
+    print("we have environments: ", len(environments))
+    print("we have regions: ", len(regions))
+    print("we have zones: ", len(zones))
+    print("we have serverroles: ", len(serverroles))
+    
+    print("we have active servers: ", len(active_servers))
+    print("we have disposed servers: ", len(disposed_servers ))
 
     
     #update_applications()
