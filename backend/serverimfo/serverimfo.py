@@ -138,7 +138,7 @@ def main():
             print(serverupdate)
             print("------------------------------")
         rediskey = redis_prefix + ":dig:" + server["Host Name"]
-        diginfo = redis_client.get(rediskey)
+        diginfo = redis_client.get(rediskey).decode("utf-8")
         if diginfo == None:
             print(f"Server {server['Host Name']} not in the dig database")
             print("--------------Dig------------------")
@@ -153,7 +153,7 @@ def main():
         
 
     # g if answer section is populated for each server
-        if is_answer_section_populated(diginfo):
+        if is_answer_section_populated(diginfo) and diginfo != None:
             print(f"Answer section is populated for {server['Host Name']}")
 
             resdiskey = redis_prefix + ":netcat:" + server["Host Name"]
