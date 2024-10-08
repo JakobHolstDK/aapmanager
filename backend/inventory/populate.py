@@ -236,7 +236,7 @@ def main():
             pprint.pprint(active_servers[active_server])
 
             mycontry = active_servers[active_server]['country']
-            myregion = countries[mycontry]['region']
+            myregion = countries[mycontry]
             print(myregion)
             print("-------------------------------")
 
