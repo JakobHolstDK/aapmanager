@@ -12,9 +12,25 @@ import pydig
 def dnsdig(hostname):
     mydig = subprocess.run(["dig", hostname], stdout=subprocess.PIPE)
     dig = mydig.stdout.decode("utf-8")
-
-    
     return dig
+
+def is_answer_section_populated(dns_response):
+    # Split the DNS response into lines
+    lines = dns_response.splitlines()
+    
+    # Look for the "ANSWER SECTION" header
+    answer_section_found = False
+    for line in lines:
+        if "ANSWER SECTION" in line:
+            answer_section_found = True
+            continue  # Go to the next line after "ANSWER SECTION"
+        
+        # If the answer section is found and the next line has content, return True
+        if answer_section_found and line.strip():
+            return True
+
+    # Return False if no content is found after the "ANSWER SECTION"
+    return False
 
 
 # the command serverinfo.py generates the following output:
@@ -137,20 +153,23 @@ def main():
 
         
 
-    # g 
-        resdiskey = redis_prefix + ":netcat:" + server["Host Name"]
-        netcatinfo = redis_client.get(resdiskey)
-        if netcatinfo == None:
-            print(f"Server {server['Host Name']} not in the netcat database")
-            print("-------------Netcat-----------------")
-            netcat = os.system(f"nc -zv {server['Host Name']} 22")
-            print(netcat)
-            redis_client.set(resdiskey, netcat, ex=3600)
+    # g if answer section is populated for each server
+        if is_answer_section_populated(mydig):
+            print(f"Answer section is populated for {server['Host Name']}")
 
-        else:
-            print(f"Server {server['Host Name']} already in the netcat database")
-            print(netcatinfo)
-            print("--------------netcat----------------")
+            resdiskey = redis_prefix + ":netcat:" + server["Host Name"]
+            netcatinfo = redis_client.get(resdiskey)
+            if netcatinfo == None:
+                print(f"Server {server['Host Name']} not in the netcat database")
+                print("-------------Netcat-----------------")
+                netcat = os.system(f"nc -zv {server['Host Name']} 22")
+                print(netcat)
+                redis_client.set(resdiskey, netcat, ex=3600)
+
+            else:
+                print(f"Server {server['Host Name']} already in the netcat database")
+                print(netcatinfo)
+                print("--------------netcat----------------")
     return
 
 if __name__ == "__main__":
