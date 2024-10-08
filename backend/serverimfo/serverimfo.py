@@ -131,51 +131,36 @@ def main():
                 pass 
             else:
                 print("Error sending data")
-                print(response.text)
-                print(response.status_code)
 
             time.sleep(0.02)
             redis_client.set(f"{redis_prefix}:{server['Host Name']}", json.dumps(digested_server), ex=3600)
         else:
-            print(f"Server {server['Host Name']} already in the database")
-            print(serverupdate)
-            print("------------------------------")
+            pass
         rediskey = redis_prefix + ":dig:" + server["Host Name"]
         try:
             diginfo = redis_client.get(rediskey).decode("utf-8")
         except Exception as e:
             diginfo = None
 
-        if diginfo == None:
-            print(f"Server {server['Host Name']} not in the dig database")
-            print("--------------Dig------------------")
+        if diginfo == None and server["Host Name"] not in ["local.dev", "localhost"]:
+
             mydig = dnsdig(server["Host Name"])
-            print(mydig)
             redis_client.set(rediskey, mydig, ex=3600)
 
         else:
-            print(f"Server {server['Host Name']} already in the dig database")
-            print("--------------Dig------------------")
+            pass
 
         
 
     # g if answer section is populated for each server
         if is_answer_section_populated(diginfo) and diginfo != None:
-            print(f"Answer section is populated for {server['Host Name']}")
-
             resdiskey = redis_prefix + ":netcat:" + server["Host Name"]
             netcatinfo = redis_client.get(resdiskey)
             if netcatinfo == None:
-                print(f"Server {server['Host Name']} not in the netcat database")
-                print("-------------Netcat-----------------")
                 netcat = os.system(f"nc -zv {server['Host Name']} 22")
-                print(netcat)
                 redis_client.set(resdiskey, netcat, ex=3600)
-
             else:
-                print(f"Server {server['Host Name']} already in the netcat database")
                 print(netcatinfo)
-                print("--------------netcat----------------")
     return
 
 if __name__ == "__main__":
