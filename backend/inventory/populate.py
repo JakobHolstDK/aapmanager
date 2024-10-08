@@ -237,13 +237,6 @@ def main():
 
             mycontry = active_servers[active_server]['country']
             myregion = countries[mycontry]
-            print(myregion)
-            print("-------------------------------")
-
-
-
-
-
 
             myserverdata = {
                 "name": active_server,
@@ -251,10 +244,9 @@ def main():
                 "configitems": {},
                 "appid": appidid,
                 "environment": environments[active_servers[active_server]['environment']],
-
-
-
+                "region": myregion
             }
+            pprint.pprint(myserverdata)
 
 
 
