@@ -165,7 +165,7 @@ def main():
         
         pprint.pprint(answer_section(diginfo))
     # g if answer section is populated for each server
-        if answer_section is not None:
+        if answer_section == "":
             resdiskey = redis_prefix + ":netcat:" + server["Host Name"]
             netcatinfo = redis_client.get(resdiskey)
             if netcatinfo == None:
