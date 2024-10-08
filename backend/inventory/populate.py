@@ -237,10 +237,15 @@ def main():
             # We now know the appid
             pprint.pprint(active_servers[active_server])
             lowerhost = active_servers[active_server]['host_name'].lower()
-            command = ["ansible-inventory",  "-i", "/opt/common/common.inventory",  "--host", lowerhost] 
+            command = ["ansible-inventory",  "-i", "/opt/common/common.inventory",  "--host", lowerhost ]
+
             data = subprocess.run(command, stdout=subprocess.PIPE)
             data = json.loads(data.stdout)
             print(data)
+            for region in regions:
+                if region in data['regions']:
+                    myregion = regions[region]
+                    break
             print("------------------------------")
 
 
