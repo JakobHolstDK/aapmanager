@@ -163,9 +163,9 @@ def main():
             pass
 
         
-        pprint.pprint(answer_section(diginfo))
-    # g if answer section is populated for each server
-        if answer_section == "":
+    # g if answer section 
+        if answer_section(diginfo) is not "":
+            pprint.pprint(answer_section(diginfo))
             resdiskey = redis_prefix + ":netcat:" + server["Host Name"]
             netcatinfo = redis_client.get(resdiskey)
             if netcatinfo == None:
