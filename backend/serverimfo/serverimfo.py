@@ -169,7 +169,7 @@ def main():
             resdiskey = redis_prefix + ":netcat:" + server["Host Name"]
             netcatinfo = redis_client.get(resdiskey)
             if netcatinfo == None:
-                netcat = os.system(f"nc -zv {server['Host Name']} 22")
+                netcat = os.system(f"timeout 1 nc -zv {server['Host Name']} 22 2>/dev/null" )
                 redis_client.set(resdiskey, netcat, ex=3600)
             else:
                 pass
