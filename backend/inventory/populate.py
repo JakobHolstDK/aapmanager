@@ -197,7 +197,7 @@ def main():
                 appidid = appids[myappid]
             except KeyError:
                 pass
-            print(appoidid)
+            print("myapid: %-20s : %s" % (myappid , appoidid))
 
         else:
             print("Server found in redis")
