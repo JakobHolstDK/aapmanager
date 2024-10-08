@@ -15,6 +15,9 @@ def dnsdig(hostname):
     return dig
 
 def is_answer_section_populated(dns_response):
+    if dns_response == None:
+        return False
+    
     # Split the DNS response into lines
     lines = dns_response.splitlines()
     
