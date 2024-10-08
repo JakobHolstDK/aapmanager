@@ -158,7 +158,7 @@ def main():
                 netcat = os.system(f"nc -zv {server['Host Name']} 22")
                 redis_client.set(resdiskey, netcat, ex=3600)
             else:
-                print(netcatinfo)
+                pass
     return
 
 if __name__ == "__main__":
