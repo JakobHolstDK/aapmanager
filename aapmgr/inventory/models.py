@@ -53,7 +53,8 @@ class region(models.Model):
         ('emea', 'Europe, Middle East'),
         ('apac', 'Acia Pacific'),
         ('amer', 'Americas'),
-        ('afri', 'Africa')
+        ('afri', 'Africa'),
+        ('unknown', 'Unknown')
     )
     name = models.CharField(max_length=255, choices=reguinchoices,  unique=True)
     description = models.TextField(blank=True, null=True)
