@@ -237,6 +237,8 @@ def main():
 
             mycontry = active_servers[active_server]['country']
             myregion = countries[mycontry]
+            pprint(environments)
+            
             myenvironment = environments[active_servers[active_server]['environment']]
 
 
