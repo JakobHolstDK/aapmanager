@@ -103,10 +103,10 @@ def get_serverinfo():
     active_servers = {}
     disposed_servers = {}
     for server in data:
-        if server['assetstatus'] != "Disposed":
-            active_servers[server['hostname']] = server
+        if server['asset_status'] != "Disposed":
+            active_servers[server['host_name']] = server
         else:
-            disposed_servers[server['hostname']] = server
+            disposed_servers[server['host_name']] = server
     return active_servers, disposed_servers
 
 
@@ -145,15 +145,23 @@ def main():
     serverroles = get_serverroles()
 
     active_servers, disposed_servers = get_serverinfo()
+
+
     print("we have projects: ", len(projects))
     print("we have appids: ", len(appids))
     print("we have environments: ", len(environments))
     print("we have regions: ", len(regions))
     print("we have zones: ", len(zones))
     print("we have serverroles: ", len(serverroles))
-    
+
     print("we have active servers: ", len(active_servers))
     print("we have disposed servers: ", len(disposed_servers ))
+
+    for active_server in active_servers:
+        print(active_server)
+        print(active_servers[active_server])
+        print("------------------------------")
+        
 
     
     #update_applications()
