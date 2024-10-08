@@ -148,7 +148,6 @@ def main():
 
         else:
             print(f"Server {server['Host Name']} already in the dig database")
-            print(diginfo)
             print("--------------Dig------------------")
 
         
