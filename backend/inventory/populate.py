@@ -57,7 +57,7 @@ def get_Appids():
     data = response.json()
     appids = {}
     for appid in data:
-        appids[appid['name']] = appid['id']
+        appids[appid['appid']] = appid['id']
     return appids
 
 def get_environments():
