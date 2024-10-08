@@ -260,7 +260,12 @@ def main():
                 "environment": myenvironment,
                 "region": myregion
             }
-            pprint.pprint(myserverdata)
+            response = requests.post("http://aapmanager.dsv.com:9990/inventory/api/servers/", json=myserverdata)
+            print(response.status_code)
+            print(response.text)
+            print("------------------------------")
+            r.set(f"{redis_prefix}:{active_server}", json.dumps(active_servers[active_server]), ex=36000)
+            
 
 
 
