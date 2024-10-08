@@ -191,7 +191,7 @@ def main():
 
         get = r.get(f"{redis_prefix}:{active_server}")
         if get == None:
-            myappid = "AAP-%s" % active_servers[active_server]['application_id']
+            myappid = "APP-%s" % active_servers[active_server]['application_id']
             appoidid = None
             try:
                 appidid = appids[myappid]
