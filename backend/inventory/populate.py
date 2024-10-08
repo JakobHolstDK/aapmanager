@@ -48,7 +48,7 @@ def get_projects():
     data = response.json()
     projects = {}
     for project in data:
-        projects[project['id']] = project['name']
+        projects[project['name']] = project['id']
     return projects
 
 def get_Appids():
@@ -57,7 +57,7 @@ def get_Appids():
     data = response.json()
     appids = {}
     for appid in data:
-        appids[appid['id']] = appid['appid']
+        appids[appid['name']] = appid['id']
     return appids
 
 def get_environments():
@@ -66,7 +66,7 @@ def get_environments():
     data = response.json()
     environments = {}
     for environment in data:
-        environments[environment['id']] = environment['name']
+        environments[environment['name']] = environment['id']
     return environments
 
 def get_regions():
@@ -75,7 +75,7 @@ def get_regions():
     data = response.json()
     regions = {}
     for region in data:
-        regions[region['id']] = region['name']
+        regions[region['name']] = region['id']
     return regions
 
 def get_zones():
@@ -84,7 +84,7 @@ def get_zones():
     data = response.json()
     zones = {}
     for zone in data:
-        zones[zone['id']] = zone['name']
+        zones[zone['name']] = zone['id']
     return zones
 
 def get_serverroles():
@@ -93,7 +93,7 @@ def get_serverroles():
     data = response.json()
     serverroles = {}
     for serverrole in data:
-        serverroles[serverrole['id']] = serverrole['name']
+        serverroles[serverrole['name']] = serverrole['id']
     return serverroles
 
 
@@ -136,7 +136,7 @@ def main():
     print(zones)
     serverroles = get_serverroles()
     print(serverroles)
-    
+
     
     #update_applications()
     #update_servers()
