@@ -14,7 +14,7 @@ router.register(r'organizations', OrganizationViewSet)
 router.register(r'projects', ProjectViewSet)
 router.register(r'appids', AppidViewSet)
 router.register(r'countries', CountryViewSet)
-router.register(r'subnets', SubnetSerializer)
+router.register(r'subnets', SubnetViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
