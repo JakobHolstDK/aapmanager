@@ -1,4 +1,12 @@
 import redis
+import json 
+import os
+import sys
+import time
+import subprocess
+import pydig
+import socket
+
 
 
 def main():
@@ -9,14 +17,12 @@ def main():
     for key in keys:
         server = key.decode("utf-8").split(":")[2]
         print(server)
-
-    print("dig")
-
-    keys = r.keys("serverinfo:dig:*")
-    for key in keys:
-        server = key.decode("utf-8").split(":")[2]
-        print(server)
         
+        value = r.get(key)
+        print(value)
+        
+    
+
 
 
 
