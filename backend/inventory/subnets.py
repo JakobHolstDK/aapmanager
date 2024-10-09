@@ -44,9 +44,10 @@ def main():
     
 
     for key in zone:
-        print(key)
-        print(zone[key])
-        print("\n") 
+        for ip in zone[key]:
+            print("%-20s %-20s" % (key, ip))
+
+            
     
 
 
