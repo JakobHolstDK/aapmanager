@@ -18,7 +18,7 @@ router.register(r'subnets', SubnetSerializer)
 
 urlpatterns = [
     path('api/', include(router.urls)),
-#    path('', inventory.as_view(), name='inventory')
+    path('', inventory.as_view(), name='inventory')
 ]
 # Not Found: /serverinfo/api/upload/
 

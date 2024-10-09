@@ -5,7 +5,7 @@ from django.views.generic import ListView
 from rest_framework.decorators import api_view
 from .models import server, zone, region, appid, environment, serverrole, country
 from .serializers import ServerSerializer, ZoneSerializer, RegionSerializer, AppidSerializer, EnvironmentSerializer, ServerroleSerializer, CountrySerializer
-from .models import organization, project, subnet
+from .models import organization, project, subnetwork
 from .serializers import OrganizationSerializer, ProjectSerializer, SubnetSerializer
 from rest_framework import status
 
@@ -17,7 +17,7 @@ import os
 import json
 
 class SubnetViewSet(viewsets.ModelViewSet):
-    queryset = subnet.objects.all()
+    queryset = subnetwork.objects.all()
     serializer_class = SubnetSerializer
 
     def create(self, request, *args, **kwargs):
