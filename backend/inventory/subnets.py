@@ -6,6 +6,8 @@ import time
 import subprocess
 import pydig
 import socket
+import pprint
+
 
 
 
@@ -29,7 +31,8 @@ def main():
                     print("valid ip")
                     # replace last octet with 0
                     ip = ip.rsplit(".", 1)[0] + ".0"
-                    seconddotinserver = server.split(".")[2]
+                    splitmyserver = server.split(".")
+                    pprint.pprint(splitmyserver)
                     subnets[ip] = server[:seconddotinserver]
                 except socket.error:
                     print("invalid ip")
