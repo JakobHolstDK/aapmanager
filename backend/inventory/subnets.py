@@ -20,6 +20,8 @@ def main():
 
         if value == "0":
             print(server, "ssh port is open")
+            dig = pydig.query(server, 'A')
+            print(dig)
 
 
 
