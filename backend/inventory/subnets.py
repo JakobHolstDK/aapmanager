@@ -7,6 +7,8 @@ import subprocess
 import pydig
 import socket
 import pprint
+import requests
+
 
 
 
@@ -46,6 +48,9 @@ def main():
     for key in zone:
         for ip in zone[key]:
             print("%-20s %-20s" % (key, ip))
+
+    
+
 
 
     
