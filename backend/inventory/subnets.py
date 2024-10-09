@@ -45,11 +45,17 @@ def main():
 
     
 
-    for key in zone:
-        for ip in zone[key]:
-            print("%-20s %-20s" % (key, ip))
+result = requests.get("http://aapmanager:9990/serverinfo/api/assets/")
+try;
+  assets = result.json()
+except json.decoder.JSONDecodeError:
+  print("Error: Unable to decode JSON")
+  sys.exit(1)
 
+for asset in assets:
+    print(asset)
     
+
 
 
 
