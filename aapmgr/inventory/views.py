@@ -5,8 +5,8 @@ from django.views.generic import ListView
 from rest_framework.decorators import api_view
 from .models import server, zone, region, appid, environment, serverrole, country
 from .serializers import ServerSerializer, ZoneSerializer, RegionSerializer, AppidSerializer, EnvironmentSerializer, ServerroleSerializer, CountrySerializer
-from .models import organization, project
-from .serializers import OrganizationSerializer, ProjectSerializer
+from .models import organization, project, subnet
+from .serializers import OrganizationSerializer, ProjectSerializer, SubnetSerializer
 from rest_framework import status
 
 
@@ -15,6 +15,32 @@ import subprocess
 import tempfile
 import os
 import json
+
+class SubnetViewSet(viewsets.ModelViewSet):
+    queryset = subnet.objects.all()
+    serializer_class = SubnetSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data, many=isinstance(request.data, list))
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+    def perform_create(self, serializer):
+        serializer.save()
+
+    def perform_update(self, serializer):
+        serializer.save()
+
+    def perform_destroy(self, instance):
+        instance.delete()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = SubnetSerializer(queryset, many=True)
+        return Response(serializer.data)
+    
 
 class CountryViewSet(viewsets.ModelViewSet):
     queryset = country.objects.all()
