@@ -18,7 +18,7 @@ def main():
         server = key.decode("utf-8").split(":")[2]
         value = r.get(key).decode("utf-8")
 
-        if value == 0:
+        if value == "0":
             print(server, "ssh port is open")
 
 
