@@ -12,6 +12,8 @@ def main():
     for key in keys:
         server = key.decode("utf-8").split(":")[2]
         print(server)
+        print(r.hgetall(key))
+        
 
 
     
