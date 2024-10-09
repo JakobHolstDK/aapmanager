@@ -28,7 +28,7 @@ def main():
                     socket.inet_aton(ip)
                     # replace last octet with 0
                     ip = ip.rsplit(".", 1)[0] + ".0"
-                    splitmyserver = server.split(".")
+                    splitmyserver = server.lower().split(".")
                     subnets[ip] = splitmyserver[1]
                     try:
                         myzone = zone[splitmyserver[1]] 
@@ -42,7 +42,6 @@ def main():
                     print("invalid ip")
 
     
-    print("zone", zone)
 
     for key in zone:
         print(key)
