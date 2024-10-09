@@ -39,7 +39,7 @@ def main():
                                                    
 
                 except socket.error:
-                    print("invalid ipi %-20s"   % ip)
+                    pass
 
     
 
@@ -47,21 +47,8 @@ def main():
         for ip in zone[key]:
             print("%-20s %-20s" % (key, ip))
 
-            
-    
-
-
-
 
     
-
-
-
-
-    
-
-
-
 
 if __name__ == '__main__':
     main()
