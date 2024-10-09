@@ -1,0 +1,23 @@
+---
+- name: "automated_server_configutaion| satelite registration"
+  hosts: all
+  gather_facts: true
+  become: true
+  vars:
+    venv: /home/jakhol/venv/
+  tasks:
+# tasks register to satellite6 with or without puppet
+
+    - name: "Automated_server_configutaion| satelite registration |Remote Satellite certificates"
+      yum: 
+        name: "{{ satellite_catello_rpm }}"
+        state: present
+        disable_gpg_check: yes
+
+    - name: "Automated_server_configutaion| satelite registration | Subscribe to Satellite"
+      community.general.redhat_subscription:
+        state: present
+        server_hostname: {{ satellite_server }}
+        activationkey:  "{{ activation_key }}"
+        org_id: "{{ org_id }}"
+      become: True
