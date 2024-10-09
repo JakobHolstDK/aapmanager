@@ -29,7 +29,6 @@ def main():
                     # replace last octet with 0
                     ip = ip.rsplit(".", 1)[0] + ".0"
                     splitmyserver = server.split(".")
-                    pprint.pprint(splitmyserver)
                     subnets[ip] = splitmyserver[1]
                     try:
                         myzone = zone['splitmyserver[1]'] 
@@ -43,7 +42,6 @@ def main():
                     print("invalid ip")
 
     
-    print("subnets", subnets)
     print("zone", zone)
     
 
