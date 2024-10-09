@@ -16,11 +16,13 @@ def main():
     keys = r.keys("serverinfo:netcat:*")
     for key in keys:
         server = key.decode("utf-8").split(":")[2]
-        print(server)
-        
-        value = r.get(key)
-        print(value)
-        
+        value = r.get(key).devode("utf-8")
+
+        if value == 0:
+            print(server, "ssh port is open")
+            
+
+
     
 
 
