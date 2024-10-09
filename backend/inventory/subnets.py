@@ -29,7 +29,7 @@ def main():
                     print("valid ip")
                     # replace last octet with 0
                     ip = ip.rsplit(".", 1)[0] + ".0"
-                    seconddotinserver = server.rfind(".", 0, server.rfind("."))
+                    seconddotinserver = server.rfind(".", 1, server.rfind("."))
                     subnets[ip] = server[:seconddotinserver]
                 except socket.error:
                     print("invalid ip")
