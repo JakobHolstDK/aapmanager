@@ -1,6 +1,6 @@
 from django.urls import path, include
 from .views import inventory, ServerViewSet, ServerroleViewSet, EnvironmentViewSet, RegionViewSet, ZoneViewSet
-from .views import OrganizationViewSet, ProjectViewSet, AppidViewSet, CountryViewSet, SubnetSerializer
+from .views import OrganizationViewSet, ProjectViewSet, AppidViewSet, CountryViewSet, SubnetSerializer, SubnetViewSet
 
 from rest_framework.routers import DefaultRouter
 
