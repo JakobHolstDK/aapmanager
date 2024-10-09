@@ -39,7 +39,7 @@ def main():
                                                    
 
                 except socket.error:
-                    print("invalid ip")
+                    print("invalid ipi %-20s"   % ip)
 
     
 
