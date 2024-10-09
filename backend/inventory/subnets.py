@@ -46,7 +46,7 @@ def main():
     
 
 result = requests.get("http://aapmanager:9990/serverinfo/api/assets/")
-try;
+try:
   assets = result.json()
 except json.decoder.JSONDecodeError:
   print("Error: Unable to decode JSON")
