@@ -33,6 +33,8 @@ def main():
                     ip = ip.rsplit(".", 1)[0] + ".0"
                     splitmyserver = server.split(".")
                     pprint.pprint(splitmyserver)
+                    subnets[ip] = splitmyserver[1]
+                    
                 except socket.error:
                     print("invalid ip")
 
