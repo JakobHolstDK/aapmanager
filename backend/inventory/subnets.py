@@ -53,7 +53,8 @@ except json.decoder.JSONDecodeError:
   sys.exit(1)
 
 for asset in assets:
-    print(asset)
+    print(assets[asset]['country'])
+    
     
 
 
