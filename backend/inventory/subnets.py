@@ -35,7 +35,7 @@ def main():
                     except KeyError:
                         zone[splitmyserver[1]] = []
 
-                    zone[splitmyserver[1]].append(server)
+                    zone[splitmyserver[1]].append(ip)
                                                    
 
                 except socket.error:
