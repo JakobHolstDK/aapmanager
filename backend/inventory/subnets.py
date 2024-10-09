@@ -31,11 +31,11 @@ def main():
                     splitmyserver = server.split(".")
                     subnets[ip] = splitmyserver[1]
                     try:
-                        myzone = zone['splitmyserver[1]'] 
+                        myzone = zone[splitmyserver[1]] 
                     except KeyError:
-                        zone['splitmyserver[1]'] = []
+                        zone[splitmyserver[1]] = []
 
-                    zone['splitmyserver[1]'].append(server)
+                    zone[splitmyserver[1]].append(server)
                                                    
 
                 except socket.error:
