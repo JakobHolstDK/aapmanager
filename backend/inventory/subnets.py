@@ -43,6 +43,9 @@ def main():
 
     
     print("zone", zone)
+
+    for key in zone:
+        print(key)
     
 
 
